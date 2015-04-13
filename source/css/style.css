@@ -19,7 +19,6 @@ body {
     color: #e3e3e3;
     font-family: Inconsolata, "Courier New", monospace;
     margin-bottom: 50px;
-    min-width: 740px;
     /* suppose you want minimun width of 740px */
     
     width: auto !important;
@@ -51,10 +50,6 @@ body {
 
 .btn-info {
     background-color: rgb(51, 105, 178);
-}
-
-.footer {
-    min-width: 740px;
 }
 
 .footer > .container {
@@ -109,6 +104,7 @@ a:hover {
 }
 
 .thumbnail {
+    margin: 0 auto;
     padding: 0px 8px;
     max-width: 300px;
     height: 95px;
