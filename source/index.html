@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+{% block title %}PoliCTF 2015{% endblock %}
+
+{% block head %}
+    <script type="text/javascript" src="js/codef_core.js"></script>
+    <script type="text/javascript" src="js/codef_starfield.js"></script>
+    <script type="text/javascript" src="js/codef_scrolltext.js"></script>
+    <script type="text/javascript" src="js/codef_3d.js"></script>
+    <script type="text/javascript" src="js/scroller_text.js"></script>
+    <script type="text/javascript" src="js/glfx.js"></script>
+    <script type="text/javascript" src="js/pt.js"></script>
+    <script type="text/javascript" src="js/obj.js"></script>
+    <script type="text/javascript" src="js/demo.js"></script>
+
+    <script>
+    function fullscr(elemId) {
+        var elem = document.getElementById(elemId);
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        }
+    }
+
+    window.addEventListener('load', initDemo, false);
+    </script>
+    
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-7 demo_block">
+    <div class="col-xs-12" id="democanvas"></div>
+    <div class="col-xs-12 text-center">
+        <button id="player" type="button" class="btn btn-info btn-sm" aria-label="Left Align">
+            <span class="glyphicon glyphicon-pause" aria-hidden="true"> music</span>
+        </button>
+        <button type="button" class="btn btn-info btn-sm" aria-label="Left Align" onclick="fullscr('democanvas')">
+            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"> fullscreen</span>
+        </button>
+    </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-5 main_block">
+        <div class="main-text">
+            PoliCTF 2015 is a jeopardy style capture-the-flag competition that will be held both online and open to all competitors and live for a restricted number of participants. The competition will start during the second day of the <a href="http://dimva2015.it">DIMVA 2015</a> conference that will be held in Milan (Italy) at <b>10/07/2015 09:00 UTC </b> and will last for <b>48 hours</b>.
+            Competition will start in:
+        <center>
+         <h3>
+          <div><script>
+          TargetDate = "07/10/2015 9:00 AM GMT";
+          BackColor = "black";
+          ForeColor = "CornflowerBlue";
+          CountActive = true;
+          CountStepper = -1;
+          LeadingZero = true;
+          DisplayFormat = "%D Days, %H Hours<br/>%M Minutes, %S Seconds.";
+          FinishMessage = "It is finally here!";
+          </script>
+
+          <span id="countdown" class="timer"></span>
+
+          <script language="JavaScript" src="js/countdown.js"></script></div>
+        </h3>
+
+        </center>
+
+            <br />The live competition will be held in Politecnico di Milano, in a dedicated CTF arena in the hall in front of "<a href="">Aula Rogers</a>".
+            <br />If you are interested in participating in person let us know at <a href="mailto:info@polictf.it">info@polictf.it</a>.
+            <br />
+        </div>
+        <div class="main-text">
+            <h3>Registrations open the 15th of May.</h3>
+        </div>
+        <div class="center">
+            <h2>Sponsors</h2>
+            <div class="main-text">
+            We kindly thank our sponsors for supporting the PoliCTF:
+            <div>
+            <div class="col-xs-6 sponsor">
+                <a class="thumbnail" href="http://www.reply.eu/en/topics/security/">
+                    <img src="images/sponsor/reply_cv.png" alt="Reply Communication Valley" class="img-responsive" />
+                </a>
+            </div>
+            <div class="col-xs-6 sponsor">
+                <a class="thumbnail" href="http://www.consorzio-cini.it/index.php/en/">
+                    <img src="images/sponsor/cini.png" alt="Consorzio interuniversitario nazionale per l'informatica" class="img-responsive" />
+                </a>
+            </div>
+            </div>
+        </div>
+     </div>
+</div>
+</div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $('#player').click( function(e){
+            e.preventDefault();
+            player_cmd($(this), mod);
+        })
+    </script>
+{% endblock %}
