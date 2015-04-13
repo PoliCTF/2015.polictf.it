@@ -23,8 +23,8 @@ function initDemo() {
     mod.load("tunes/between2.mod");
     mod.repeat = true;
 
-    mod.setautostart(true);
-    mod.play();
+    //mod.setautostart(true);
+    //mod.play();
     myfont.initTile(18, 20, 0x20);
     myscrolltext = new scrolltext_horizontal();
     myscrolltext.scrtxt = scroller_text;
@@ -111,7 +111,13 @@ function fakeCRT() {
 }
 
 function player_cmd(obj, mod){
-    mod.pause()
-    obj.children('span').toggleClass('glyphicon-play')
-    obj.children('span').toggleClass('glyphicon-pause')
+    if(mod.playing){
+        mod.pause();
+    }else{
+        mod.play();
+    }
+
+    obj.children('span').toggleClass('glyphicon-play');
+    obj.children('span').toggleClass('glyphicon-pause');
+
 }
