@@ -98,6 +98,7 @@ a:hover {
 }
 
 .thumbnail {
+    margin: 0 auto;
     padding: 0px 8px;
     max-width: 300px;
     height: 95px;
