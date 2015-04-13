@@ -1,6 +1,11 @@
 @font-face {
     font-family: amiga;
-    src: url("../fonts/TopazPlus.ttf");
+    src: url('../fonts/TopazPlus.eot');
+    src: url('../fonts/TopazPlus.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/TopazPlus.woff2') format('woff2'),
+         url('../fonts/TopazPlus.woff') format('woff'),
+         url('../fonts/TopazPlus.ttf') format('truetype'),
+         url('../fonts/TopazPlus.svg#topazplus_a600a1200a4000Rg') format('svg');
     font-weight: 400;
 }
 
