@@ -33,6 +33,10 @@ body {
     border-radius: 3px;    
 }
 
+.navbar-brand > a > span {
+    color:#dadada;
+}
+
 .modal-content{
     background-color: #000;
 }
