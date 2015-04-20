@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+{% block title %}PoliCTF 2015{% endblock %}
+
+{% block head %}
+<link rel='stylesheet' href="css/bootstrapvalidator.min.css" />
+{% endblock %}
+
+{% block content %}
+<div class="row marginbottom">
+    <div class="col-xs-12 col-sm-12 col-md-7">
+        <div class="main-text">
+          Competition will start in:
+          <center>
+           <h3>
+              <div><script>
+              TargetDate = "07/10/2015 9:00 AM GMT";
+              BackColor = "black";
+              ForeColor = "CornflowerBlue";
+              CountActive = true;
+              CountStepper = -1;
+              LeadingZero = true;
+              DisplayFormat = "%D Days, %H Hours<br/>%M Minutes, %S Seconds.";
+              FinishMessage = "It is finally here!";
+              </script>
+
+              <span id="countdown" class="timer"></span>
+
+              <script language="JavaScript" src="js/countdown.js"></script></div>
+            </h3>
+          </center>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-5 main_block">
+        <div class="main-text col-md-10">
+            <div class="reg-error"></div>
+            <form class="form" id="reg-form" data-toggle="validator">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" pattern="^([_A-z0-9]){3,}$" maxlength="20" id="username" placeholder="Username" data-error required>
+                    <span class="help-block">Up to 20 letters, numbers and underscores</span>
+                </div>
+                <div class="form-group">
+                    <label for="password_first">Password</label>
+                    <input type="password" data-minlength="6" class="form-control" id="password_first" placeholder="Password" required>
+                    <span class="help-block">Minimum of 6 characters</span>
+                </div>
+                <div class="form-group">
+                    <label for="password_check">Repeat Password</label>
+                    <input type="password" class="form-control" id="password_check" placeholder="Repeat Password" data-error="Whoops, these don't match" data-match="#password_first" data-match-error="Whoops, these don't match" required> 
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">
+                    <label for="email_address">Email address</label>
+                    <input type="email" class="form-control" id="email_address" placeholder="Enter email" data-error="Mail format not correct/Empty mail" required>
+                    <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <input type="text" class="form-control" id="country" placeholder="Country" required>
+                </div>
+                <div class="form-group">
+                    <label for="web_url">Website/Twitter</label>
+                    <input class="form-control" id="web_url" placeholder="Website/Twitter">
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="check_rules" data-error="You must accept the rules!" required>I agree that I have accepted the rules
+                            <div class="help-block with-errors"></div>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </form>
+            <div class="form-group">
+                <div id="messages"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="js/validator.js"> </script>
+<script>
+    $( "#reg-form" ).submit(function( event ) {
+        $.ajax({
+            method: "POST",
+            url: "http://scoreboard.polictf.local.necst.it/registration/subscribe",
+            data: { name: "John", 
+                    email: "Boston",
+                    password: "password",
+                    check_password: "password",
+                    rules: "yes",
+                    country: "Italy",
+                    site: "website" 
+                }
+        })
+        .done( function( msg ) {
+            $(".form-control").attr("disable");
+        });
+});
+</script>
+{% endblock %}
