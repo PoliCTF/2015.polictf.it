@@ -3,6 +3,7 @@
 
 {% block head %}
 <link rel='stylesheet' href="css/bootstrapvalidator.min.css" />
+<link rel='stylesheet' href="css/formhelpers.min.css" />
 {% endblock %}
 
 {% block content %}
@@ -32,7 +33,7 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-5 main_block">
         <div class="main-text col-md-10">
-            <div class="reg-error"></div>
+            <div id="reg-error"></div>
             <form class="form" id="reg-form" data-toggle="validator">
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -51,12 +52,17 @@
                 </div>
                 <div class="form-group">
                     <label for="email_address">Email address</label>
-                    <input type="email" class="form-control" id="email_address" placeholder="Enter email" data-error="Mail format not correct/Empty mail" required>
+                    <input type="email" class="form-control" id="email_address" placeholder="Enter email" data-error="Mail adress not correct" required>
+                    <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email_address_confirm">Confirm Email address</label>
+                    <input type="email" class="form-control" id="email_address_confirm" placeholder="Enter email" data-error="Whoops, these don't match" data-match="#email_address" required>
                     <span class="help-block with-errors"></span>
                 </div>
                 <div class="form-group">
                     <label for="country">Country</label>
-                    <input type="text" class="form-control" id="country" placeholder="Country" required>
+                    <div class="bfh-selectbox bfh-countries" data-flags="true" data-blank="false" data-country="US"></div>
                 </div>
                 <div class="form-group">
                     <label for="web_url">Website/Twitter</label>
@@ -65,7 +71,7 @@
                 <div class="form-group">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" id="check_rules" data-error="You must accept the rules!" required>I agree that I have accepted the rules
+                            <input type="checkbox" id="check_rules" data-error="You must accept the rules!" required>I accept the rules
                             <div class="help-block with-errors"></div>
                         </label>
                     </div>
@@ -84,23 +90,34 @@
 
 {% block script %}
 <script src="js/validator.js"> </script>
+<script src="js/formhelpers.min.js"> </script>
 <script>
-    $( "#reg-form" ).submit(function( event ) {
+$('#reg-form').validator().on('submit', function (e) {
+    if (!e.isDefaultPrevented()) {
+        // everything looks good!
+        e.preventDefault();
+        // Use Ajax to submit form data
         $.ajax({
             method: "POST",
             url: "http://scoreboard.polictf.local.necst.it/registration/subscribe",
-            data: { name: "John", 
-                    email: "Boston",
-                    password: "password",
-                    check_password: "password",
-                    rules: "yes",
-                    country: "Italy",
-                    site: "website" 
-                }
-        })
-        .done( function( msg ) {
-            $(".form-control").attr("disable");
+            data: { name:  $("#username").val(), 
+                    email: $("#email").val(),
+                    password: $("#password_first").val(),
+                    check_password: $("#password_check").val(),
+                    rules: $("#check_rules").is(":checked"),
+                    country: $(".bfh-countries option:selected" ).text(),
+                    site: $("#web_url").val() 
+            },
+            success: function(msg) { 
+                alert("success:" + msg); 
+                $(".form-control").attr("disable");
+                $("#reg-error").html( msg );
+            },
+            error: function() { 
+                alert("error" ); 
+            }
         });
+    }
 });
 </script>
 {% endblock %}
