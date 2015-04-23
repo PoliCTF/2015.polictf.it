@@ -147,7 +147,7 @@ a:hover {
 
 #democanvas canvas {
     width: 100%;
-    max-width: 633px;
+    max-width: 640px;
 }
 
 #democanvas:-moz-full-screen,
