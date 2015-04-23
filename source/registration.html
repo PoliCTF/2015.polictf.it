@@ -42,8 +42,8 @@
                 </div>
                 <div class="form-group">
                     <label for="password_first">Password</label>
-                    <input type="password" data-minlength="6" class="form-control" id="password_first" placeholder="Password" required>
-                    <span class="help-block">Minimum of 6 characters</span>
+                    <input type="password" data-minlength="8" class="form-control" id="password_first" placeholder="Password" required>
+                    <span class="help-block">Minimum of 8 characters</span>
                 </div>
                 <div class="form-group">
                     <label for="password_check">Repeat Password</label>
@@ -87,13 +87,14 @@
     </div>
 </div>
 {% endblock %}
-
 {% block script %}
 <script src="js/validator.js"> </script>
 <script src="js/formhelpers.min.js"> </script>
 <script>
 $('#reg-form').validator().on('submit', function (e) {
     if (!e.isDefaultPrevented()) {
+		$("#reg-error").removeClass();
+		$("#reg-error").text("");
         // everything looks good!
         e.preventDefault();
         // Use Ajax to submit form data
@@ -101,20 +102,33 @@ $('#reg-form').validator().on('submit', function (e) {
             method: "POST",
             url: "http://scoreboard.polictf.local.necst.it/registration/subscribe",
             data: { name:  $("#username").val(), 
-                    email: $("#email").val(),
+                    email: $("#email_address").val(),
                     password: $("#password_first").val(),
-                    check_password: $("#password_check").val(),
-                    rules: $("#check_rules").is(":checked"),
-                    country: $(".bfh-countries option:selected" ).text(),
-                    site: $("#web_url").val() 
+                    rules: $("#check_rules").is(":checked") ? "y" : "n",
+                    country: $("span.bfh-selectbox-option").text(),
+                    website: $("#web_url").val() 
             },
-            success: function(msg) { 
-                alert("success:" + msg); 
-                $(".form-control").attr("disable");
-                $("#reg-error").html( msg );
+            success: function(data_r) {
+				if(data_r.done) {
+					$("#reg-error").addClass("ok");
+					$("#reg-error").text( ">> Registration successful. An e-mail is sent to you to confirm the registration.");
+					$("html, body").animate({ scrollTop: 0 }, "slow");
+					$("#reg-form").hide()
+				}
+				else {
+					var error_t = "";
+					$("#reg-error").addClass("error");
+					for (error_elm in data_r.errors) {
+						error_t = error_t + "<br /> - " + data_r.errors[error_elm];
+					}
+					$("#reg-error").html(">> Some data are incorrect: <div style=\"font-size: 8pt;\">" + error_t + "</div>" );
+					$("html, body").animate({ scrollTop: 0 }, "slow");
+				}
             },
             error: function() { 
-                alert("error" ); 
+               $("#reg-error").addClass("error");
+			   $("#reg-error").text( ">> Technical error occurs. Please retry.");
+			   $("html, body").animate({ scrollTop: 0 }, "slow");
             }
         });
     }

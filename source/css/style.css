@@ -171,6 +171,19 @@ a:hover {
     max-width: 100% !important;
 }
 
+.error {
+	color: red;
+	font-size: 12pt;
+	font-weight: 700;
+	padding-bottom: 20px;
+}
+
+.ok {
+	color: green;
+	font-size: 12pt;
+	font-weight: 700;
+}
+
 .has-error .form-control {
 		border-width: 3px;
 }
