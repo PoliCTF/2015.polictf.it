@@ -111,7 +111,7 @@ $('#reg-form').validator().on('submit', function (e) {
             success: function(data_r) {
 				if(data_r.done) {
 					$("#reg-error").addClass("ok");
-					$("#reg-error").html( ">> Registration successful. <br /> An e-mail is sent to you to confirm the registration.");
+					$("#reg-error").html( ">> Registration successful. <br /> An e-mail has been sent to you to confirm the registration.");
 					$("html, body").animate({ scrollTop: 0 }, "slow");
 					$("#reg-form").hide()
 				}
