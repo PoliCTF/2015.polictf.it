@@ -42,7 +42,7 @@
                     </li>
                     -->
                     <li>
-                        <a href="javascript:onclick(openmodalnews())">News</a>
+                        <a href="javascript:openmodalnews()">News</a>
                     </li>
                     <li>
                         <a class="nolink" href="#" data-width="600px" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Registration opens on the 15th of May check out later please! :)"><del>Registration</del></a>
@@ -82,8 +82,12 @@
                 $('.nolink').popover('hide');
             }, 5000);
         });
+        news_tweets_loaded = false;
         $("#news_tweets").on('shown.bs.modal', function() {
-            $(this).find(".modal-content").load( "news.html" );
+            if(!news_tweets_loaded) {
+                $(this).find(".modal-content").load( "news.html" );
+                news_tweets_loaded = true;
+            }
         })
         function openmodalnews(){
             $('#news_tweets').modal()
