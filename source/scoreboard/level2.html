@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link href="css/template.css" media="screen" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<title>Poli CTF 2015</title>
+</head>
+<body>
+	<div id="sun">
+		<img src="images/sun.png" alt="sun">
+	</div>
+	<div id="wrapper">
+		<div id="top">
+			<div id="center" style="display: table; margin: 0 auto;">
+				<div id="points">
+					<label>Tower of Hanoiii</label>
+					<p>x 0500</p>
+				</div>
+				<div id="level">
+					<label>Level</label>
+					<p>2/3</p>
+				</div>
+				<div id="solved_challenges">
+					<label>Solved Challenges</label>
+					<p>2/10</p>
+				</div>
+				<div id="position">
+					<label>Ranking</label>
+					<p>112/30000</p>
+				</div>
+				<div id="submit">
+					<label>Submit Flag</label>
+					<form id="submit_level2" method="POST">
+						<input type="text" name="flag" value="flag{insert_flag_here}">
+						<input type="submit" name="submit" value="submit">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="block1" style="width: 136px; height: 122px; left: 50px; bottom: 78px;" class="challenge_layout2">
+			<a href="#" onclick="setVisibility('challenge1')"><img style="margin-left: 68px; margin-top: 0px;" src="images/yellowchallenge.jpg" alt="challenge1"></a>
+				<div id="challenge1" class="description" style="top: -100px; left: -50px;">
+					<strong>Challange title: </strong><p>watwatwatwatwatwatwatwat watwatwatwatwatwatwatwatwatwatwa twatwatwat watwatwatwatwatwatwat watwatwat</p>
+				</div>
+		</div>
+		<div id="block2" style="z-index: 3; width: 680px; height: 61px; left: 200px; bottom: 78px;" class="challenge_layout2">
+			<a href="#" onclick="setVisibility('challenge3')"><img style="margin-top: 0px; margin-left: 136px;" src="images/bluechallenge.jpg" alt="challenge3"></a>
+				<div id="challenge3" class="description" style="width: 50%; top: -100px; left: -10px;">
+					<strong>Challange title: </strong><p>watwatwatwatwatwatwatwat watwatwatwatwatwatwatwatwatwatwa twatwatwat watwatwatwatwatwatwat watwatwat</p>
+				</div>
+
+		</div>
+		<div id="block3" style="z-index: 1; width: 136px; height: 122px; left: 200px; bottom: 139px;" class="challenge_layout2">
+			<a href="#" onclick="setVisibility('challenge2')"><img style="margin-left: 0px; margin-top: 0px;" src="images/redchallenge.jpg" alt="challenge2"></a>
+				<div id="challenge2" class="description" style="top: -100px; left: -155px;">
+					<strong>Challange title: </strong><p>watwatwatwatwatwatwatwat watwatwatwatwatwatwatwatwatwatwa twatwatwat watwatwatwatwatwatwat watwatwat</p>
+				</div>
+		</div>
+		<div id="block4" class="step_layout">
+			<div id="block4" style="width: 204px; height: 61px; bottom: 134px; left: 195px;" class="challenge_layout2">
+				<a href="#" onclick="setVisibility('challenge4')"><img style="margin-left: 0px; margin-top: 0px;" src="images/greenchallenge.jpg" alt="challenge4"></a>
+				<div id="challenge4" class="description" style="top: -100px; left: -145px;">
+					<strong>Challange title: </strong><p>watwatwatwatwatwatwatwat watwatwatwatwatwatwatwatwatwatwa twatwatwat watwatwatwatwatwatwat watwatwat</p>
+				</div>
+				<a href="#" onclick="setVisibility('challenge5')"><img style="margin-left: 0px; margin-top: 0px;" src="images/redchallenge.jpg" alt="challenge5"></a>
+				<div id="challenge5" class="description" style="top: -100px; left: -52px;">
+					<strong>Challange title: </strong><p>watwatwatwatwatwatwatwat watwatwatwatwatwatwatwatwatwatwa twatwatwat watwatwatwatwatwatwat watwatwat</p>
+				</div>
+				<a href="#" onclick="setVisibility('challenge6')"><img style="margin-left: 0px; margin-top: 0px;" src="images/bluechallenge.jpg" alt="challenge6"></a>
+				<div id="challenge6" class="description" style="top: -100px; left: 15px;">
+					<strong>Challange title: </strong><p>watwatwatwatwatwatwatwat watwatwatwatwatwatwatwatwatwatwa twatwatwat watwatwatwatwatwatwat watwatwat</p>
+				</div>
+			</div>
+			<div id="block5" style="z-index: 1; width: 136px; height: 61px; bottom: 270px; left: 40px;" class="challenge_layout2">
+				<a href="#" onclick="setVisibility('challenge7')"><img style="margin-left: 0px; margin-top: 0px;" src="images/yellowchallenge.jpg" alt="challenge7"></a>
+				<div id="challenge7" class="description" style="top: -100px; left: -120px;">
+					<strong>Challange title: </strong><p>watwatwatwatwatwatwatwat watwatwatwatwatwatwatwatwatwatwa twatwatwat watwatwatwatwatwatwat watwatwat</p>
+				</div>
+				<a href="#" onclick="setVisibility('challenge8')"><img style="margin-left: 0px; margin-top: 0px;" src="images/greenchallenge.jpg" alt="challenge8"></a>
+				<div id="challenge8" class="description" style="top: -100px; left: -50px;">
+					<strong>Challange title: </strong><p>watwatwatwatwatwatwatwat watwatwatwatwatwatwatwatwatwatwa twatwatwat watwatwatwatwatwatwat watwatwat</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="mountains">
+	</div>
+	<div id="trees">
+	</div>
+	<div id="floor">
+	</div>
+</body>
+</html>
