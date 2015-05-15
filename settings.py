@@ -26,3 +26,4 @@ PORT = 8080
 
 scoreboard_base = "https://scoreboard.polictf.it"
 registration_url = "https://registration.polictf.it/subscribe"
+polictf_url = "http://polictf.it"
