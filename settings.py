@@ -23,3 +23,6 @@ HOST = '0.0.0.0'
 PORT = 8080
 
 # Your own settings here
+
+scoreboard_base = "https://scoreboard.polictf.it"
+registration_url = "https://registration.polictf.it/subscribe"
