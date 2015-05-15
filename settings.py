@@ -15,7 +15,6 @@ FILTER = [
 # When building, force the inclusion of all the HTML partials listed here.
 # You can use patterns here eg: "alert-*.html"
 INCLUDE = [
-
 ]
 
 # Server
