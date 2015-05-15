@@ -185,10 +185,14 @@ a:hover {
 }
 
 .has-error .form-control {
-		border-width: 3px;
+		border-width: 1px;
+        border-color: red;
+}
+.has-error .help-block{
+    color: red;
 }
 .help-block {
-	font-size:8pt;
+	font-size:10pt;
 	margin-bottom: 0;
 	padding-bottom: 0;
 }
