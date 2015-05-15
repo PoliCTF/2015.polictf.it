@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block title %}PoliCTF 2015{% endblock %}
+
+{% block head %}
+    <script type="text/javascript" src="js/codef_core.js"></script>
+    <script type="text/javascript" src="js/codef_starfield.js"></script>
+    <script type="text/javascript" src="js/codef_scrolltext.js"></script>
+    <script type="text/javascript" src="js/codef_3d.js"></script>
+    <script type="text/javascript" src="js/scroller_text.js"></script>
+    <script type="text/javascript" src="js/glfx.js"></script>
+    <script type="text/javascript" src="js/pt.js"></script>
+    <script type="text/javascript" src="js/obj.js"></script>
+    <script type="text/javascript" src="js/demo.js"></script>
+
+    <script>
+    function fullscr(elemId) {
+        var elem = document.getElementById(elemId);
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        }
+    }
+
+    window.addEventListener('load', initDemo, false);
+    </script>
+    
+{% endblock %}
+
+{% block content %}
+<div>
+<h1>Rules</h1>
+<ul>
+<li>No limitations on team size</li>
+<li>NO solution sharing is allowed</li>
+<li>Attacking our infrastructure is prohibited (only attack designated services)</li>
+<li>Attacking other teams is prohibited</li>
+<li>Do not DOS, it will result in an immediate ban.</li>
+<li>Should you find any vulnerability/bug in our scoreboard or infrastructure please report it to us, bonus points will be awarded</li>
+<li>If yout think you've got a valid flag but the scoreboard is not accepting it please contact us.</li>
+<li>The first 3 solvers for challenges get bonus points. 6%, 4% and 2% of the challenge value.</li>
+<li>TowerOfHanoi affiliated individuals or groups cannot claim prizes</li>
+<li>to claim prizes you will need to have a valid point-of-contact</li>
+</ul>
+</div>
+{% endblock %}
+
