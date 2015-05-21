@@ -5,9 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
 	<link href="/css/ranking.css" media="screen" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/scoreboard.js"></script>
 	<title>PoliCTF 2015 | Rankings</title>
 </head>
 <body>
+	<script type="text/javascript">
+		getScores();
+	</script>
 	<div class="container">
 		<div class="wrapper">
 			<div class="page-header">
@@ -15,42 +20,14 @@
 					<h1>PoliCTF</h1>
 				</div>
 			</div>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Team</th>
-						<th>Points</th>
-						<th>Completed Levels</th>
-					</tr>
-				</thead>
-			<tbody>
-			<tr>
-				<th><span class="num">1</span></th>
-				<td>ToH</td>
-				<td><div class="image-points">1000</div></td>
-				<td><div class="image-levels">3/3</div></td>
-			</tr>
-			<tr>
-				<th><span class="num">2</span></th>
-				<td>WE_0WN_Y0U</td>
-				<td><div class="image-points">800</div></td>
-				<td><div class="image-levels">2/3</div></td>
-			</tr>
-			<tr>
-				<th><span class="num">3</span></th>
-				<td>Plaid Parliement of Pwning</td>
-				<td><div class="image-points">500</div></td>
-				<td><div class="image-levels">2/3</div></td>
-			</tr>
-			<tr>
-				<th><span class="num">4</span></th>
-				<td>More Smoked Leet Chicken</td>
-				<td><div class="image-points">300</div></td>
-				<td><div class="image-levels">2/3</div></td>
-			</tr>
-			</tbody>
-			</table>
+			<ul class="header">
+				<li>#</li>
+				<li>Team</li>
+				<li>Points</li>
+				<li>Completed Levels</li>
+			</ul>
+			<div id="scores">
+			</div>
 	</div>
 </body>
 </html>

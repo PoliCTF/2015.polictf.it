@@ -36,25 +36,35 @@ h1{
 
 ul{
 	list-style-type: none;
+	border-bottom: 2px solid;
+	overflow: hidden;
 }
 
-table thead tr th{
+ul.header{
 	font-size: 1.2em;
 }
 
-table tbody tr{
-	border-bottom: 2px solid;
+li{
+	display: block;
+	float: left;
+	padding: 10px;
 }
 
-table tbody tr th span.num{
-	font-size: 1.6em;
+ul li:first-child{
+	width: 5%;
 }
 
-table tr th span.suffix, table tr td{
-	font-size: 1.6em;
+ul li:nth-child(2){
+	width: 60%;
 }
 
+ul li:nth-child(3){
+	width: 20%;
+}
 
+ul li:nth-child(4){
+	width: 15%;
+}
 
 .image-points::before{
    content: '$\0020';
@@ -66,10 +76,6 @@ table tr th span.suffix, table tr td{
 	content: "\02605\0020";
 	font-size: 1.2em;
 	color:#e0e000;
-}
-
-.table>tbody>tr>td{
-	vertical-align: inherit;
 }
 
 .page-header{
