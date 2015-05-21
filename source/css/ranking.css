@@ -1,0 +1,78 @@
+@font-face {
+	font-family: 'SuperMarioGalaxy';
+	src: url('/fonts/SuperMarioGalaxy.eot'),
+	    url('/fonts/SuperMarioGalaxy.woff2') format('woff2'),
+	    url('/fonts/SuperMarioGalaxy.woff') format('woff'),
+	    url('/fonts/SuperMarioGalaxy.ttf') format('truetype'),
+	    url('/fonts/SuperMarioGalaxy.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: amiga;
+    src: url('../fonts/TopazPlus.eot');
+    src: url('../fonts/TopazPlus.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/TopazPlus.woff2') format('woff2'),
+         url('../fonts/TopazPlus.woff') format('woff'),
+         url('../fonts/TopazPlus.ttf') format('truetype'),
+         url('../fonts/TopazPlus.svg#topazplus_a600a1200a4000Rg') format('svg');
+    font-weight: 400;
+}
+
+body{
+	font-family: amiga;
+	background-size: cover;
+	background-color: #000;
+	color: #fff;
+}
+
+h1{
+	font-family: ;
+	color: #fff100;
+	font-size: 3em;
+	padding-bottom: 20px;
+}
+
+ul{
+	list-style-type: none;
+}
+
+table thead tr th{
+	font-size: 1.2em;
+}
+
+table tbody tr{
+	border-bottom: 2px solid;
+}
+
+table tbody tr th span.num{
+	font-size: 1.6em;
+}
+
+table tr th span.suffix, table tr td{
+	font-size: 1.6em;
+}
+
+
+
+.image-points::before{
+   content: '$\0020';
+   font-size: 1.2em;
+   color:#e0e000;
+}
+
+.image-levels::before{
+	content: "\02605\0020";
+	font-size: 1.2em;
+	color:#e0e000;
+}
+
+.table>tbody>tr>td{
+	vertical-align: inherit;
+}
+
+.page-header{
+	border-bottom: none;
+	text-align: center;
+}
