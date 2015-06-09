@@ -19,7 +19,7 @@ INCLUDE = [
 
 # Server
 HOST = '0.0.0.0'
-PORT = 8080
+PORT = 80
 
 # Your own settings here
 

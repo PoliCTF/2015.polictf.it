@@ -1,9 +1,67 @@
+var challenges = [];
+var teams = [];
+
 function setVisibility(id){
   var elements=document.getElementsByClassName("description");
   for(i = 0; i < elements.length; i++){
     $(elements[i]).hide();
   }
+	var elements=document.getElementsByClassName("challList");
+	for(i = 0; i < elements.length; i++){
+		$(elements[i]).hide();
+	}
   $("#"+id).fadeIn("slow");
+}
+
+
+function displayList(id){
+	var elements=document.getElementsByClassName("challList");
+	for(i = 0; i < elements.length; i++){
+		$(elements[i]).hide();
+	}
+	
+	var elements=document.getElementsByClassName("description");
+	for(i = 0; i < elements.length; i++){
+		$(elements[i]).hide();
+	}
+	if(document.getElementById(id).style.visibility == "visible") {
+		document.getElementById(id).style.display = "none";
+		document.getElementById(id).style.visibility = "hidden";
+	}
+	else {
+		document.getElementById(id).style.display = "block";
+		document.getElementById(id).style.visibility = "visible";
+	}
+}
+
+function loadChallange(id){
+	var elements=document.getElementsByClassName("description");
+	for(i = 0; i < elements.length; i++){
+		$(elements[i]).hide();
+	}
+	if(challenges[id].status == "open") {
+		$.ajax({
+			type:"GET",
+			url:"http://scoreboard.polictf.local.necst.it/scoreboard/common/challenge/"+id,
+			success: function(data, status){
+				name = data.name;
+				html = data.html;
+				file = data.file; 
+				$("#chall"+id+"_name").html("<h2>"+name+"</h2>");
+				$("#chall"+id+"_html").html(html);
+				$("#chall"+id+"_points").text(challenges[id].points + " Points");
+				if(file != "") {
+					$("#chall"+id+"_file").attr("href",file);
+					$("#chall"+id+"_file").html("Source");
+				}
+			},
+			error: function() { alert('ummh..'); }
+		});
+	}
+	else {
+		$("#chall"+id+"_html").html("Challange closed <br />Check Later");
+	}
+	$("#chall"+id).fadeIn("slow");
 }
 
 function getScores(){
@@ -13,9 +71,136 @@ function getScores(){
     success: function(data, status){
       array_scores = data.scores;
       for(i = 0; i < array_scores.length; i++){
-	string = "<ul><li>" + i + "</li><li>" + array_scores[i].name + "</li><li class=\"image-points\">" + array_scores[i].points + "</li><li class=\"image-levels\">" + "1/3" + "</li></ul>"; 
+	string = "<ul><li>" + (i+1) + "</li><li>" + array_scores[i].name + "</li><li class=\"image-points\">" + array_scores[i].points + "</li><li class=\"image-levels\">" + "1/3" + "</li></ul>"; 
 	$("#scores").append(string);
       }
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+        alert(xhr.status);
+        alert(thrownError);
+	}
+  });
+}
+
+function loginTEST(){
+  $.ajax({
+    type:"POST",
+    url:"http://scoreboard.polictf.local.necst.it/scoreboard/login",
+	data: { teamname: "dummy", 
+			password: "foobar"
+	},
+    xhrFields: {
+       withCredentials: true
+    },
+    crossDomain: true,
+    success: function(data, status){
+		log = data.r;
+		if(log == "1") {
+			window.location.replace("/scoreboard/level2.html");
+		}
+    },
+    error: function (xhr, textStatus, thrownError) {
+    	alert(textStatus);
+    	console.log(xhr);
+    }
+  });
+}
+
+function logout(){
+  $.ajax({
+    type:"GET",
+    url:"http://scoreboard.polictf.local.necst.it/scoreboard/logout",
+    success: function(data, status){
+		log = data.r;
+		if(log == "1") {
+			window.location.replace("/scoreboard/login.html");
+		}
+    },
+    error: function (xhr, textStatus, thrownError) {
+        alert(textStatus);
+    },
+    xhrFields: {
+       withCredentials: true
+   	}
+  });
+}
+
+function getPersonalScore(){
+  $.ajax({
+    type:"GET",	
+    xhrFields: {
+       withCredentials: true
+    },
+    url:"http://scoreboard.polictf.local.necst.it/scoreboard/team/status",
+    success: function(data, status){
+    	if (data.status == "Plz login.") {
+    		window.location.replace("/scoreboard/login.html");
+    	}
+		team = data.statosquadra;
+		solved = data.solved;
+		$("#team_name").html(team.nome);
+		$("#team_points").html(team.totpoints);
+		$("#team_solved").html(solved.length + "/" + challenges.length);
+		for(i = 1; i < teams.length; i++){
+			if(teams[i].name == team.nome) {
+				$("#team_ranking").html(i + "/" + teams.length);
+			} 
+		}
+		for(j = 0; j < solved.length; j++) {
+			$("#chall"+ solved[j].id +"_img").attr("src", $("#chall"+ solved[j].id +"_img").attr("src").replace(".jpg","_done.jpg"));
+		}
+    },
+    error: function (xhr, textStatus, thrownError) {
+        alert(textStatus);
+ 	}
+	});
+}
+
+function getChallenges(){
+  $.ajax({
+    type:"GET",
+    url:"http://scoreboard.polictf.local.necst.it/scoreboard/common/status",
+    success: function(data, status){
+		chall = data.status;
+		for(i = 1; i <= chall.length; i++){
+			challenges[i] = chall[i-1];
+		}
+		team = data.scores;
+		for(i = 1; i <= team.length; i++){
+			teams[i] = team[i-1];
+		}
+		getPersonalScore();
+    },
+    error: function() { alert('ummh..'); }
+  });
+}
+
+function submit_flag() {
+	$.ajax({
+    type:"POST",
+    url:"http://scoreboard.polictf.local.necst.it/scoreboard/team/submit",
+    data: { flag: $("#flag").val() },
+    xhrFields: {
+       withCredentials: true
+    },
+    crossDomain: true,
+    success: function(data, status){
+		res = data.result;
+		flag = data.flag;
+		if( res > 0 ){
+			alert("Challenge solved! Points gained: " + res);
+		}
+		else if (res == "wrong") {
+			alert("Wrong flag... Try again!! Flag: " + flag);
+		}
+		else if (res == "alreadysolved") {
+			alert("Challange already solved. Flag:" + flag);
+		}
+		else if (res == "rightbutcannotsave") {
+			alert("Flag correct but some errors occur. Try again. Flag:" + flag);
+		}
+		getPersonalScore();
+		$("#flag").val("");
     },
     error: function() { alert('ummh..'); }
   });

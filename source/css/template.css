@@ -103,7 +103,7 @@ body{
 	z-index: 1;
 }
 
-#points, #solved_challenges, #position, #level, #submit{
+#points, #solved_challenges, #position, #level, #submit, #logout{
 	float: left;
 	text-align: center;
 	padding: 15px;
@@ -117,7 +117,7 @@ body{
 	bottom: 68px;
 }
 
-#submit form{
+#submit form, #logout form{
 	margin-top: 15px;
 }
 
@@ -154,13 +154,16 @@ body{
 
 /**/
 
+.challList {
+	z-index: 999;
+}
+
 .description {
   background: none repeat scroll 0 0 #F8F8F8;
   border: 5px solid #DFDFDF;
-  color: #717171;
+  padding: 5px;
+  color: #000;
   font-size: 10px;
-  text-align: center;
-  text-transform: uppercase;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -169,6 +172,13 @@ body{
   /* padding: 0 20px;
   */
 }
+
+.description h2 {
+	font-family: SuperMario;
+	text-align: center;
+	text-transform: uppercase; 
+}
+
 .description:after{
     content:'';
     position:absolute;
@@ -184,6 +194,22 @@ body{
     -webkit-transform:rotate(45deg);
     transform:rotate(45deg);
 }
+
+.description p {
+	font-family: "Arial";
+  	font-size: 10pt;
+}
+
+.description a, a:hover {
+	color: #000;
+}
+
+.description p.center {
+	font-family: SuperMario;
+	text-align: center;
+}
+
+
 /*p{
     margin:100px;
     float:left;
@@ -193,3 +219,8 @@ body{
 a:hover .description{
     display:block;
 }*/
+
+.center {
+	font-family: SuperMario;
+	text-align: center;
+}
