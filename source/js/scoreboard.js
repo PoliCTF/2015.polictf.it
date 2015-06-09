@@ -1,20 +1,8 @@
 var challenges = [];
 var teams = [];
 
-function setVisibility(id){
-  var elements=document.getElementsByClassName("description");
-  for(i = 0; i < elements.length; i++){
-    $(elements[i]).hide();
-  }
-	var elements=document.getElementsByClassName("challList");
-	for(i = 0; i < elements.length; i++){
-		$(elements[i]).hide();
-	}
-  $("#"+id).fadeIn("slow");
-}
-
-
 function displayList(id){
+	reset_chall();
 	var elements=document.getElementsByClassName("challList");
 	for(i = 0; i < elements.length; i++){
 		$(elements[i]).hide();
@@ -24,6 +12,7 @@ function displayList(id){
 	for(i = 0; i < elements.length; i++){
 		$(elements[i]).hide();
 	}
+
 	if(document.getElementById(id).style.visibility == "visible") {
 		document.getElementById(id).style.display = "none";
 		document.getElementById(id).style.visibility = "hidden";
@@ -34,10 +23,16 @@ function displayList(id){
 	}
 }
 
+
 function loadChallange(id){
 	var elements=document.getElementsByClassName("description");
 	for(i = 0; i < elements.length; i++){
 		$(elements[i]).hide();
+	}
+	reset_chall();
+	if($("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0].indexOf("yellowbrick") < 0) {
+		url = $("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0] + "_clicked.jpg";
+		$("#chall"+ id +"_img").attr("src", url);
 	}
 	if(challenges[id].status == "open") {
 		$.ajax({
@@ -47,21 +42,21 @@ function loadChallange(id){
 				name = data.name;
 				html = data.html;
 				file = data.file; 
-				$("#chall"+id+"_name").html("<h2>"+name+"</h2>");
-				$("#chall"+id+"_html").html(html);
-				$("#chall"+id+"_points").text(challenges[id].points + " Points");
+				$("#chall_name").html("<h2>"+name+"</h2>");
+				$("#chall_html").html(html);
+				$("#chall_points").text(challenges[id].points + " Points");
 				if(file != "") {
-					$("#chall"+id+"_file").attr("href",file);
-					$("#chall"+id+"_file").html("Source");
+					$("#chall_file").attr("href",file);
+					$("#chall_file").html("Source");
 				}
 			},
 			error: function() { alert('ummh..'); }
 		});
 	}
 	else {
-		$("#chall"+id+"_html").html("Challange closed <br />Check Later");
+		$("#chall_html").html("<h2>Challange closed <br />Check Later</h2>");
 	}
-	$("#chall"+id).fadeIn("slow");
+	$("#chall").fadeIn("slow");
 }
 
 function getScores(){
@@ -147,7 +142,8 @@ function getPersonalScore(){
 			} 
 		}
 		for(j = 0; j < solved.length; j++) {
-			$("#chall"+ solved[j].id +"_img").attr("src", $("#chall"+ solved[j].id +"_img").attr("src").replace(".jpg","_done.jpg"));
+			url = "/images/yellowbrick.jpg";
+			$("#chall"+ solved[j].id +"_img").attr("src", url);
 		}
     },
     error: function (xhr, textStatus, thrownError) {
@@ -162,7 +158,7 @@ function getChallenges(){
     url:"http://scoreboard.polictf.local.necst.it/scoreboard/common/status",
     success: function(data, status){
 		chall = data.status;
-		for(i = 1; i <= chall.length; i++){
+		for(i = 1; i <= 27; i++){
 			challenges[i] = chall[i-1];
 		}
 		team = data.scores;
@@ -173,6 +169,29 @@ function getChallenges(){
     },
     error: function() { alert('ummh..'); }
   });
+}
+
+function reset_chall() {
+	for(i = 1; i < challenges.length; i++) {
+		$("#chall"+ i +"_img").attr("src", $("#chall"+ i +"_img").attr("src").split("_")[0].split(".")[0] + ".jpg");
+	}
+	$("#chall_name").html("");
+	$("#chall_html").html("");
+	$("#chall_points").text("");
+	$("#chall_file").removeAttr("href");
+	$("#chall_file").html("");
+}
+
+function close_chall() {
+	var elements=document.getElementsByClassName("challList");
+	for(i = 0; i < elements.length; i++){
+		$(elements[i]).hide();
+	}
+	
+	var elements=document.getElementsByClassName("description");
+	for(i = 0; i < elements.length; i++){
+		$(elements[i]).hide();
+	}	
 }
 
 function submit_flag() {
