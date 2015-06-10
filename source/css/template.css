@@ -158,7 +158,7 @@ body{
 	z-index: 999;
 }
 
-.description {
+.description, .result_class {
   background: none repeat scroll 0 0 #F8F8F8;
   border: 5px solid #DFDFDF;
   padding: 5px;
@@ -171,9 +171,15 @@ body{
   margin: 0 auto;
 }
 
-.description h2 {
+.description h2, .result_class h2{
 	font-family: SuperMario;
 	text-align: center;
+	text-transform: uppercase; 
+}
+
+#X {
+	font-family: SuperMario;
+	text-align: right;
 	text-transform: uppercase; 
 }
 
@@ -202,7 +208,7 @@ body{
 	color: #000;
 }
 
-.description p.center {
+.description p.center, .result_class p.center {
 	font-family: SuperMario;
 	text-align: center;
 }

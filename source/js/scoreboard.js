@@ -21,6 +21,7 @@ function displayList(id){
 		document.getElementById(id).style.display = "block";
 		document.getElementById(id).style.visibility = "visible";
 	}
+	$("#result").hide();
 }
 
 
@@ -30,7 +31,8 @@ function loadChallange(id){
 		$(elements[i]).hide();
 	}
 	reset_chall();
-	if($("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0].indexOf("yellowbrick") < 0) {
+	$("#result").hide();
+	if($("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0].indexOf("donechallenge") < 0) {
 		url = $("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0] + "_clicked.jpg";
 		$("#chall"+ id +"_img").attr("src", url);
 	}
@@ -42,9 +44,14 @@ function loadChallange(id){
 				name = data.name;
 				html = data.html;
 				file = data.file; 
+				if($("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0].indexOf("donechallenge") < 0) {
+					$("#chall_points").text(challenges[id].points + " Points");
+				}
+				else {
+					$("#chall_points").text(challenges[id].points + " Points - SOLVED");
+				}
 				$("#chall_name").html("<h2>"+name+"</h2>");
 				$("#chall_html").html(html);
-				$("#chall_points").text(challenges[id].points + " Points");
 				if(file != "") {
 					$("#chall_file").attr("href",file);
 					$("#chall_file").html("Source");
@@ -83,6 +90,30 @@ function loginTEST(){
     url:"http://scoreboard.polictf.local.necst.it/scoreboard/login",
 	data: { teamname: "dummy", 
 			password: "foobar"
+	},
+    xhrFields: {
+       withCredentials: true
+    },
+    crossDomain: true,
+    success: function(data, status){
+		log = data.r;
+		if(log == "1") {
+			window.location.replace("/scoreboard/level2.html");
+		}
+    },
+    error: function (xhr, textStatus, thrownError) {
+    	alert(textStatus);
+    	console.log(xhr);
+    }
+  });
+}
+
+function login(){
+  $.ajax({
+    type:"POST",
+    url:"http://scoreboard.polictf.local.necst.it/scoreboard/login",
+	data: { teamname: $("#username"), 
+			password: $("#password")
 	},
     xhrFields: {
        withCredentials: true
@@ -142,9 +173,10 @@ function getPersonalScore(){
 			} 
 		}
 		for(j = 0; j < solved.length; j++) {
-			url = "/images/yellowbrick.jpg";
+			url = "/images/donechallenge.jpg";
 			$("#chall"+ solved[j].id +"_img").attr("src", url);
 		}
+		close_chall();
     },
     error: function (xhr, textStatus, thrownError) {
         alert(textStatus);
@@ -192,6 +224,7 @@ function close_chall() {
 	for(i = 0; i < elements.length; i++){
 		$(elements[i]).hide();
 	}	
+	$("#chall").hide();
 }
 
 function submit_flag() {
@@ -207,20 +240,33 @@ function submit_flag() {
 		res = data.result;
 		flag = data.flag;
 		if( res > 0 ){
-			alert("Challenge solved! Points gained: " + res);
+			$("#result_data").html("<h2>Challenge solved! <br />Points gained: " + res + "</h2>");
 		}
 		else if (res == "wrong") {
-			alert("Wrong flag... Try again!! Flag: " + flag);
+			$("#result_data").html("<h2>Wrong flag... Try again!! <br />Flag: " + flag + "</h2>");
 		}
 		else if (res == "alreadysolved") {
-			alert("Challange already solved. Flag:" + flag);
+			$("#result_data").html("<h2>Challange already solved<br /> Flag:" + flag + "</h2>");
 		}
 		else if (res == "rightbutcannotsave") {
-			alert("Flag correct but some errors occur. Try again. Flag:" + flag);
+			$("#result_data").html("<h2>Flag correct but some errors occur. Try again. <br /> Flag:" + flag + "</h2>");
 		}
 		getPersonalScore();
+		$("#result").fadeIn("slow");
 		$("#flag").val("");
     },
     error: function() { alert('ummh..'); }
   });
 }
+
+$(function() {
+    $("form input").keypress(function (e) {
+        if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+            submit_flag();
+            return false;
+        } else {
+            return true;
+        }
+    });
+});
+

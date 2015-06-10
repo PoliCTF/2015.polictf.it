@@ -7,7 +7,22 @@
 	<script type="text/javascript" src="/js/scoreboard.js"></script>
 	<title>Poli CTF 2015</title>
 </head>
-<body onload="loginTEST();">
-	<h2>Login test</h2>
+<body>
+	<h2 class="center">Login Page</h2>
+	<form class="center">
+		<label>Username</label><br /><input name="username" id="username" /><br /><br />
+		<label>Password</label><br /><input type="password" name="password" id="password" /><br /><br />
+		<span id="login" onclick="login()" onmouseover="onbutton('login');" onmouseout="offbutton('login');">Login</span></br>
+		<br /><span id="logintest" onclick="loginTEST()" onmouseover="onbutton('logintest');" onmouseout="offbutton('logintest');">LoginTEST</span></br>
+	</form>
+
+	<script>
+		function onbutton(id) {
+			$("#"+ id +"").css("text-decoration","underline");
+		}
+		function offbutton(id) {
+			$("#"+ id +"").css("text-decoration","none");
+		}
+	</script>
 </body>
 </html>
