@@ -112,8 +112,8 @@ function login(){
   $.ajax({
     type:"POST",
     url:"http://scoreboard.polictf.local.necst.it/scoreboard/login",
-	data: { teamname: $("#username"), 
-			password: $("#password")
+	data: { teamname: $("#username").val(), 
+			password: $("#password").val()
 	},
     xhrFields: {
        withCredentials: true
@@ -122,7 +122,13 @@ function login(){
     success: function(data, status){
 		log = data.r;
 		if(log == "1") {
+			$("#result_login_data").html("Login done!");
+			$("#result_login").fadeIn("slow");
 			window.location.replace("/scoreboard/level2.html");
+		}
+		if(log == "0") {
+			$("#result_login_data").html("Login error <br />Please check login data");
+			$("#result_login").fadeIn("slow");
 		}
     },
     error: function (xhr, textStatus, thrownError) {
@@ -246,7 +252,7 @@ function submit_flag() {
 			$("#result_data").html("<h2>Wrong flag... Try again!! <br />Flag: " + flag + "</h2>");
 		}
 		else if (res == "alreadysolved") {
-			$("#result_data").html("<h2>Challange already solved<br /> Flag:" + flag + "</h2>");
+			$("#result_data").html("<h2>Challenge already solved<br /> Flag:" + flag + "</h2>");
 		}
 		else if (res == "rightbutcannotsave") {
 			$("#result_data").html("<h2>Flag correct but some errors occur. Try again. <br /> Flag:" + flag + "</h2>");
@@ -260,7 +266,7 @@ function submit_flag() {
 }
 
 $(function() {
-    $("form input").keypress(function (e) {
+    $("#submit_flag_form input").keypress(function (e) {
         if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
             submit_flag();
             return false;
@@ -270,3 +276,13 @@ $(function() {
     });
 });
 
+$(function() {
+    $("#login_form input").keypress(function (e) {
+        if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+        	login();
+            return false;
+        } else {
+            return true;
+        }
+    });
+});
