@@ -62,7 +62,7 @@ body {
 .footer > .container {
     padding-right: 15px;
     padding-left: 15px;
-}
+}Å
 
 h1,
 h2,
@@ -83,7 +83,7 @@ a:hover {
 .navbar-nav a {
     font-family: 'amiga';
     font-size: 13pt;
-    background-color: #000;
+    /*background-color: #000;*/
     border-color: rgb(51, 105, 178);
 }
 
