@@ -168,17 +168,17 @@ function getPersonalScore(){
 			$("#chall"+ solved[j].id +"_img").attr("src", url);
 		}
 		lenwarn = 0;
-		if(data.warn) {
+		if(warn) {
 			lenwarn = warn.length;
 		}
-		len = warns.length
-		for(k = warns.length; k < (lenwarn+len); k++) {
+		for(k = 0; k < lenwarn; k++) {
 			w = {
 				type: "team",
-				unixtime: warn[k-warns.length].unixtime,
-				message: warn[k-warns.length].message
+				unixtime: warn[k].unixtime,
+				message: warn[k].message,
+                points: warn[k].points
 			};
-			warns[k] = w;
+			warns.push(w);
 		}
 
 		warns.sort(compare_unixtime);
