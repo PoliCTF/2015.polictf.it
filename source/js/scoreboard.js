@@ -340,8 +340,17 @@ function getChallengesList(){
     success: function(data, status){
 		chall = data.status;
 		for(i = 1; i <= 25; i++){
-			string = "<ul><li>" + "-"+ "</li><li>" + chall[i].name + "</li><li>"+ chall[i].points "</li><li>" + chall[i].numsolved + "</ul>"; 
-			$("#solved_chall").append(string);
+			str = "<ul><li>" + 
+                  "-" + 
+                  "</li><li>" + 
+                  chall[i].name + 
+                  "</li><li>"+ 
+                  chall[i].points + 
+                  "</li><li>" + 
+                  chall[i].numsolved + 
+                  "</ul>"; 
+			$("#solved_chall").append(str);
+        }
     },
     error: function() { 
     	$("#result_data").html("Network error. Please try again.");
