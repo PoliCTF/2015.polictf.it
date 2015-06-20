@@ -74,7 +74,7 @@ function getScores(){
     success: function(data, status){
       array_scores = data.scores;
       for(i = 0; i < array_scores.length; i++){
-	string = "<ul><li>" + (i+1) + "</li><li>" + array_scores[i].name + "</li><li class=\"bfh-countries\" data-country=\"US\" data-flags=\"true\" /></li><li class=\"image-points\">" + array_scores[i].points + "</li></ul>"; 
+	string = "<ul><li>" + (i+1) + "</li><li>" + array_scores[i].name + "</li><li class=\"bfh-countries\" data-country=\"US\" data-flags=\"true\">"+ array_scores[i].country +"</li><li class=\"image-points\">" + array_scores[i].points + "</li></ul>"; 
 	$("#scores").append(string);
       }
     },
@@ -168,17 +168,17 @@ function getPersonalScore(){
 			$("#chall"+ solved[j].id +"_img").attr("src", url);
 		}
 		lenwarn = 0;
-		if(data.warn) {
+		if(warn) {
 			lenwarn = warn.length;
 		}
-		len = warns.length
-		for(k = warns.length; k < (lenwarn+len); k++) {
+		for(k = 0; k < lenwarn; k++) {
 			w = {
 				type: "team",
-				unixtime: warn[k-warns.length].unixtime,
-				message: warn[k-warns.length].message
+				unixtime: warn[k].unixtime,
+				message: warn[k].message,
+                points: warn[k].points
 			};
-			warns[k] = w;
+			warns.push(w);
 		}
 
 		warns.sort(compare_unixtime);
@@ -340,8 +340,17 @@ function getChallengesList(){
     success: function(data, status){
 		chall = data.status;
 		for(i = 1; i <= 25; i++){
-			string = "<ul><li>" + "-"+ "</li><li>" + chall[i].name + "</li><li>"+ chall[i].points "</li><li>" + chall[i].numsolved + "</ul>"; 
-			$("#solved_chall").append(string);
+			str = "<ul><li>" + 
+                  "-" + 
+                  "</li><li>" + 
+                  chall[i].name + 
+                  "</li><li>"+ 
+                  chall[i].points + 
+                  "</li><li>" + 
+                  chall[i].numsolved + 
+                  "</ul>"; 
+			$("#solved_chall").append(str);
+        }
     },
     error: function() { 
     	$("#result_data").html("Network error. Please try again.");
