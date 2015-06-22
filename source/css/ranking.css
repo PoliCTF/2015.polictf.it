@@ -35,7 +35,7 @@ body{
 }
 
 h1 {
-	font-family: ;
+	font-family: amiga;
 	color: #fff100;
 	font-size: 3em;
 	padding-bottom: 20px;
@@ -68,11 +68,11 @@ li{
 }
 
 ul li:first-child{
-	width: 5%;
+	width: 15%;
 }
 
 ul li:nth-child(2){
-	width: 50%;
+	width: 45%;
 }
 
 ul li:nth-child(3){
@@ -80,7 +80,7 @@ ul li:nth-child(3){
 }
 
 ul li:nth-child(4){
-	width: 25%;
+	width: 20%;
 }
 
 .image-points::before{
@@ -131,4 +131,63 @@ ul li:nth-child(4){
 	width: 100%;
 	height: 78px;
 	z-index: 3;
+}
+
+.description, .result_class {
+  background: none repeat scroll 0 0 #F8F8F8;
+  border: 5px solid #DFDFDF;
+  padding: 5px;
+  color: #000;
+  font-size: 10px;
+  width: 500px;
+  display: none;
+  z-index: 999;
+  position: absolute;
+  top: 100px;
+  margin-left: auto;
+margin-right: auto;
+left: 0;
+right: 0;
+  font-family: amiga;
+}
+
+.description h2, .result_class h2{
+	font-family: amiga;
+	text-align: center;
+	text-transform: uppercase; 
+}
+
+#X {
+	font-family: amiga;
+	text-align: right;
+	text-transform: uppercase; 
+}
+
+.center {
+	font-family: amiga;
+	text-align: center;
+}
+.description p {
+	font-family: "Arial";
+  	font-size: 10pt;
+}
+
+.description a, a:hover {
+	color: #000;
+}
+
+.description p.center, .result_class p.center {
+	font-family: amiga;
+	text-align: center;
+}
+
+#credits {
+	font-family: Arial;
+	font-size: 8pt;
+	font-weight: 700;
+	position:absolute;
+	width: 15%;
+	bottom: 0;
+	right: 0;
+	background: rgba(147,147,147,0.6);
 }
