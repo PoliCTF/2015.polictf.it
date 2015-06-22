@@ -373,7 +373,7 @@ function compare_unixtime(a,b) {
 }
 
 
-
+/*
 function getChallengesList(){
 
 	$.blockUI("<h3>Loading...</h3>"); 
@@ -400,6 +400,4 @@ function getChallengesList(){
     	$("#result").fadeIn("slow");
     }
   });
-
-
-}
+}*/
