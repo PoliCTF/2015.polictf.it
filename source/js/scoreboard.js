@@ -205,11 +205,12 @@ function getChallenges(){
     success: function(data, status){
 		chall = data.status;
 		warn = data.globalwarnings;
-		for(i = 1; i <= 25; i++){
-			challenges[i] = chall[i-1];
-			if(challenges[i].status == "closed") {
+		for(i = 0; i < 25; i++){
+            var c = chall[i];
+			challenges[c.idchallenge] = c;
+			if(challenges[c.idchallenge].status == "closed") {
 				url = "/images/closedchallenge.png";
-				$("#chall"+ challenges[i].idchallenge +"_img").attr("src", url);
+				$("#chall"+ c.idchallenge +"_img").attr("src", url);
 			}
 		}
 		team = data.scores;
@@ -298,6 +299,48 @@ function submit_flag() {
   });
 }
 
+function player_btn(){
+    if (player.playing){
+        $("#player_btn").removeClass("glyphicon-pause").addClass("glyphicon-play");
+        player.pause();
+    }
+    else {
+        $("#player_btn").removeClass("glyphicon-play").addClass("glyphicon-pause");
+        player.play();
+        player_update();
+    }
+}
+
+function durToString(dur){
+    var sec = parseInt(dur/1000);
+    var min = parseInt(sec/60);
+    sec = sec - min*60;
+    return min.toString() + ":" + sec.toString();
+}
+
+function player_update(){
+    if (player.playing){
+        $("#player_time").html(durToString(player.currentTime) + "/" + durToString(player.duration))
+//        var player_update_timeout = setTimeout(player_update, 1000);
+    }
+}
+
+
+function player_progress(data){
+    // console.log(data)
+    player_update();
+}
+
+function player_start(){
+    player = AV.Player.fromURL('/tunes/Iea.mp3');
+    player.play();
+    player_update();
+    player.on("end", player_start);
+    player.on("progress", player_progress);
+
+}
+
+
 $(function() {
     $("#submit_flag_form input").keypress(function (e) {
         if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
@@ -357,4 +400,6 @@ function getChallengesList(){
     	$("#result").fadeIn("slow");
     }
   });
+
+
 }

@@ -2,11 +2,19 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<link href="/css/bootstrap.glyph.css" rel="stylesheet">
 	<link href="/css/template.css" media="screen" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="/js/jquery.js"></script>	
 	<script type="text/javascript" src="/js/scoreboard.js"></script>
 	<script type="text/javascript" src="/js/blockui.js"></script>
-	<title>Poli CTF 2015</title>
+	<script type="text/javascript" src="/js/blockui.js"></script>
+
+	<script type="text/javascript" src="/js/aurora.js"></script>
+	<script type="text/javascript" src="/js/flac.js"></script>
+	<script type="text/javascript" src="/js/mp3.js"></script>
+
+
+	<title>PoliCTF 2015</title>
 </head>
 <body onload="getChallenges();">
 	<div id="cloud1">
@@ -25,6 +33,10 @@
 		<div><img src="/images/greenchallenge.png" /> Web</div>
 		<div><img src="/images/orangechallenge.png" /> Pwnable</div>
 		<div><img src="/images/yellowchallenge.png" /> Forensics</div>
+	</div>
+	<div id="player">
+		<span id="player_btn" class="glyphicon glyphicon-pause" aria-hidden="true" onClick="player_btn();"></span>
+		<span id="player_time" onclick="loadChallange('12')"></span>
 	</div>
 	<div id="wrapper">
 		<div id="top">
@@ -156,7 +168,8 @@
 	</div>
 	<script type="text/javascript">
 		$(document).ajaxStop($.unblockUI); 
+		var player;
+		player_start();
 	</script>
-
 </body>
 </html>
