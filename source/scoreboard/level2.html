@@ -42,7 +42,7 @@
 		<span id="player_time" onclick="loadChallange('12')"></span>
 	</div>
 	<div id="wrapper">
-		<div id="top">
+		<div id="top" style="z-index:999">
 			<div id="center" style="display: table; margin: 0 auto;">
 				<div id="points">
 					<label>Team</label>
@@ -53,8 +53,8 @@
 					<p id="team_points"></p>
 				</div>
 				<div id="solved_challenges">
-					<label>Solved Challenges</label>
-					<p id="team_solved"></p>
+					<label><a href="challenges.html">Solved Challenges</a></label>
+					<a href="challenges.html"><p id="team_solved"></p></a>
 				</div>
 				<div id="position">
 					<label><a href="ranking.html">Ranking</a></label>
@@ -77,12 +77,12 @@
 		</div>
 
 		<div id="result" class="result_class">
-			<h2 id="X"><span style="text-align: right;cursor:pointer;" onclick="$('#result').hide()">X</span></h2>
+			<h2 id="X"><span style="text-align: right; cursor:pointer;" onclick="$('#result').hide()">X</span></h2>
 			<p id="result_data" class="center"></p>
-		</div>
+		</div> 	
 
 		<div id="chall" class="description">
-			<h2 id="X"><span style="text-align: right;cursor:pointer;" onclick="close_chall()">X</span></h2>
+			<h2 id="X"><span style="text-align: right; cursor:pointer;" onclick="close_chall()">X</span></h2>
 			<p id="chall_name"></p>
 			<p id="chall_points" class="center"></p>
 			<p id="chall_html"></p>
@@ -111,13 +111,13 @@
 		</div>
 
 
-		<div id="block3" style="z-index: 1; width: 136px; height: 122px; left: 70px; bottom: 139px;" class="challenge_layout2">
+		<div id="block3" style="z-index: 5; width: 136px; height: 122px; left: 70px; bottom: 139px;" class="challenge_layout2">
 			<a href="#" onclick="displayList('list3')"><img style="margin-top: 0px;" src="/images/redchallenge.png" alt="list2"></a>
 			<div id="list3" class="challList" style="visibility: hidden">
 				<a href="#" onclick="loadChallange('18')"><img id="chall18_img" style="margin-top: -61px; margin-left: -68px;" src="/images/redchallenge.png"></a>
 				<a href="#" onclick="loadChallange('19')"><img id="chall19_img" style="margin-top: -61px; margin-left: 0px;" src="/images/redchallenge.png"></a>
 				<a href="#" onclick="loadChallange('20')"><img id="chall20_img" style="margin-top: -122px; margin-left: 136px;" src="/images/redchallenge.png"></a>
-				<a href="#" onclick="loadChallange('21')"><img id="chall21_img" style="margin-top: -122px; margin-left: 204px;" src="/images/redchallenge.png"></a>>
+				<a href="#" onclick="loadChallange('21')"><img id="chall21_img" style="margin-top: -122px; margin-left: 204px;" src="/images/redchallenge.png"></a>
 				<a href="#" onclick="loadChallange('22')"><img id="chall22_img" style="margin-top: -122px; margin-left: 272px;" src="/images/redchallenge.png"></a>
 			</div>
 		</div>
@@ -164,10 +164,11 @@
 			</ul>
 		</div>
 		<div id="credits">
-			Designed by Alessandro Vito and Laura xxx<br />
-			Developed by Jiang Wu and Davide Quarta
+			Designed by<br /><strong>Alessandro Vito</strong> and <strong>Laura Grossi</strong><br />
+			Developed by<br /><strong>Jiang Wu</strong> and <strong>Davide Quarta</strong>
 		</div>
 	</div>
+	
 	<script type="text/javascript">
 		$(document).ajaxStop($.unblockUI); 
 		var player;
