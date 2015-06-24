@@ -30,11 +30,11 @@ body{
 }
 
 .challenge_layout1{
-	background: url('/images/yellow_brick.jpg') repeat; /* 68x61 */
+	background: url('/images/yellow_brick.png') repeat; /* 68x61 */
 }
 
 .challenge_layout2{
-	background: url('/images/brown_brick.jpg') repeat; /* 68x61 */
+	background: url('/images/brown_brick.png') repeat; /* 68x61 */
 }
 
 /*.challenge_layout1 a, .challenge_layout2 a{
@@ -242,7 +242,7 @@ a:hover .description{
 	margin-top: 100px ;
 }
 
-#position a, #position a:hover {
+#position a, #position a:hover, #solved_challenges a, #solved_challenges a:hover  {
 	color: yellow;
 	text-decoration: none;
 }
@@ -300,6 +300,8 @@ a:hover .description{
 	font-size: 8pt;
 	font-weight: 700;
 	position:absolute;
-	bottom: 10px;
-	right: 5px;
+	width: 15%;
+	bottom: 0;
+	right: 0;
+	background: rgba(147,147,147,0.6);
 }

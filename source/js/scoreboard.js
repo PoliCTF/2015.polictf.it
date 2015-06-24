@@ -2,6 +2,8 @@ var challenges = [];
 var teams = [];
 var warns = [];
 
+var urlweb = "http://scoreboard.polictf.local.necst.it/scoreboard/";
+
 function displayList(id){
 	reset_chall();
 	var elements=document.getElementsByClassName("challList");
@@ -30,7 +32,7 @@ function loadChallange(id){
 	var elements=document.getElementsByClassName("description");
 	for(i = 0; i < elements.length; i++){
 		$(elements[i]).hide();
-	}
+	} 
 	reset_chall();
 	$("#result").hide();
 	if($("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0].indexOf("donechallenge") < 0 && $("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0].indexOf("closedchallenge") < 0) {
@@ -40,7 +42,7 @@ function loadChallange(id){
 	if(challenges[id].status == "open") {
 		$.ajax({
 			type:"GET",
-			url:"http://scoreboard.polictf.local.necst.it/scoreboard/common/challenge/"+id,
+			url: urlweb+"common/challenge/"+id,
 			success: function(data, status){
 				name = data.name;
 				html = data.html;
@@ -55,10 +57,13 @@ function loadChallange(id){
 				$("#chall_html").html(html);
 				if(file != "") {
 					$("#chall_file").attr("href",file);
-					$("#chall_file").html("Source FILE");
+					$("#chall_file").html("<i>Source FILE</i>");
 				}
 			},
-			error: function() { alert('ummh..'); }
+			error: function() { 
+				$("#result_login_data").html("Network error. Please try again.");
+    			$("#result_login").fadeIn("slow");
+			}
 		});
 	}
 	else {
@@ -68,19 +73,20 @@ function loadChallange(id){
 }
 
 function getScores(){
+	$.blockUI("<h3>Loading...</h3>"); 
   $.ajax({
     type:"GET",
-    url:"http://scoreboard.polictf.local.necst.it/scoreboard/common/status",
+    url: urlweb +"common/status",
     success: function(data, status){
       array_scores = data.scores;
       for(i = 0; i < array_scores.length; i++){
-	string = "<ul><li>" + (i+1) + "</li><li>" + array_scores[i].name + "</li><li class=\"bfh-countries\" data-country=\"US\" data-flags=\"true\">"+ array_scores[i].country +"</li><li class=\"image-points\">" + array_scores[i].points + "</li></ul>"; 
+	string = "<ul><li>" + (i+1) + "</li><li>" + array_scores[i].name + "</li><li>"+ array_scores[i].country +"</li><li class=\"image-points\">" + array_scores[i].points + "</li></ul>"; 
 	$("#scores").append(string);
       }
     },
     error: function (xhr, ajaxOptions, thrownError) {
-        alert(xhr.status);
-        alert(thrownError);
+        $("#result_login_data").html("Network error. Please try again.");
+    	$("#result_login").fadeIn("slow");
 	}
   });
 }
@@ -88,7 +94,7 @@ function getScores(){
 function login(){
   $.ajax({
     type:"POST",
-    url:"http://scoreboard.polictf.local.necst.it/scoreboard/login",
+    url: urlweb + "login",
 	data: { teamname: $("#username").val(), 
 			password: $("#password").val()
 	},
@@ -118,7 +124,7 @@ function login(){
 function logout(){
   $.ajax({
     type:"GET",
-    url:"http://scoreboard.polictf.local.necst.it/scoreboard/logout",
+    url: urlweb +"logout",
     success: function(data, status){
 		log = data.r;
 		if(log == "1") {
@@ -140,7 +146,7 @@ function getPersonalScore(){
     xhrFields: {
        withCredentials: true
     },
-    url:"http://scoreboard.polictf.local.necst.it/scoreboard/team/status",
+    url: urlweb + "team/status",
     success: function(data, status){
     	if (data.status == "Plz login.") {
     		window.location.replace("/scoreboard/login.html");
@@ -158,9 +164,9 @@ function getPersonalScore(){
 		$("#team_name").html(team.nome);
 		$("#team_points").html(team.totpoints);
 		$("#team_solved").html(lensol + "/" + challenges.length);
-		for(i = 1; i < teams.length; i++){
+		for(i = 0; i < teams.length; i++){
 			if(teams[i].name == team.nome) {
-				$("#team_ranking").html(i + "/" + teams.length);
+				$("#team_ranking").html((i+1) + "/" + teams.length);
 			} 
 		}
 		for(j = 0; j < lensol; j++) {
@@ -196,12 +202,12 @@ function getPersonalScore(){
 	});
 }
 
-function getChallenges(){
+function getChallenges(personal){
 
 	$.blockUI("<h3>Loading...</h3>"); 
   $.ajax({
     type:"GET",
-    url:"http://scoreboard.polictf.local.necst.it/scoreboard/common/status",
+    url: urlweb + "common/status",
     success: function(data, status){
 		chall = data.status;
 		warn = data.globalwarnings;
@@ -213,8 +219,8 @@ function getChallenges(){
 			}
 		}
 		team = data.scores;
-		for(i = 1; i <= team.length; i++){
-			teams[i] = team[i-1];
+		for(i = 0; i < team.length; i++){
+			teams[i] = team[i];
 		}
 
 		for(k = 0; k < warn.length; k++) {
@@ -225,8 +231,12 @@ function getChallenges(){
 			}
 			warns[k] = w;
 		}
-
-		getPersonalScore();
+		if(!personal) {
+			getPersonalScore();
+		}
+		else {
+			getChallengesList();
+		}
     },
     error: function() { 
     	$("#result_data").html("Network error. Please try again.");
@@ -262,7 +272,7 @@ function close_chall() {
 function submit_flag() {
 	$.ajax({
     type:"POST",
-    url:"http://scoreboard.polictf.local.necst.it/scoreboard/team/submit",
+    url: urlweb + "team/submit",
     data: { flag: $("#flag").val() },
     xhrFields: {
        withCredentials: true
@@ -330,31 +340,60 @@ function compare_unixtime(a,b) {
 }
 
 
-
 function getChallengesList(){
-
-	$.blockUI("<h3>Loading...</h3>"); 
-  $.ajax({
-    type:"GET",
-    url:"http://scoreboard.polictf.local.necst.it/scoreboard/common/status",
-    success: function(data, status){
-		chall = data.status;
-		for(i = 1; i <= 25; i++){
-			str = "<ul><li>" + 
-                  "-" + 
-                  "</li><li>" + 
-                  chall[i].name + 
-                  "</li><li>"+ 
-                  chall[i].points + 
-                  "</li><li>" + 
-                  chall[i].numsolved + 
-                  "</ul>"; 
-			$("#solved_chall").append(str);
-        }
-    },
-    error: function() { 
-    	$("#result_data").html("Network error. Please try again.");
-    	$("#result").fadeIn("slow");
-    }
-  });
+	  $.ajax({
+	    type:"GET",
+	    url: urlweb + "common/challenges",
+	    success: function(data, status){
+			chall = data;
+			for(i = 1; i < challenges.length; i++){
+				if(challenges[i].status =="open") {
+					str = "<ul id='chall"+ i +"' onclick='openChall("+ i +");' onmouseover='onbutton(\"chall" + i +"\")'><li>" + 
+		                  chall[i].cat + 
+		                  "</li><li>" + 
+		                  chall[i].name + 
+		                  "</li><li>"+ 
+		                  challenges[i].points + 
+		                  "</li><li>" + 
+		                  challenges[i].numsolved + "/" + teams.length + 
+		                  "</li></ul>"; 
+					$("#solved_chall").append(str);
+				}
+	        }
+	    },
+	    error: function() { 
+	    	$("#result_data").html("Network error. Please try again.");
+	    	$("#result").fadeIn("slow");
+	    }
+  	});
 }
+
+function openChall(id){
+	$("#result").hide();
+	if(challenges[id].status == "open") {
+		$.ajax({
+			type:"GET",
+			url: urlweb + "common/challenge/"+id,
+			success: function(data, status){
+				name = data.name;
+				html = data.html;
+				file = data.file; 
+				$("#chall_points").text(challenges[id].points + " Points");
+				$("#chall_name").html("<h2>"+name+"</h2>");
+				$("#chall_html").html(html);
+				if(file != "") {
+					$("#chall_file").attr("href",file);
+					$("#chall_file").html("<i>Source FILE</i>");
+				}
+			},
+			error: function() { 
+				$("#result_login_data").html("Network error. Please try again.");
+    			$("#result_login").fadeIn("slow");
+			}
+		});
+	}
+	$("#chall").fadeIn("slow");
+	$('html, body').animate({
+        scrollTop: $("body").offset().top
+    }, 2000);
+} 
