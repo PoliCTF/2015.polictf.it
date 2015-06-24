@@ -50,6 +50,10 @@ h1 a, h1 a:hover {
 	z-index: 100;
 }
 
+.blockUI h1 {
+	color: #000;
+}
+
 ul{
 	list-style-type: none;
 	border-bottom: 2px solid;
@@ -153,6 +157,7 @@ right: 0;
 
 .description h2, .result_class h2{
 	font-family: amiga;
+	color: #000;
 	text-align: center;
 	text-transform: uppercase; 
 }
@@ -183,12 +188,12 @@ right: 0;
 
 #credits {
 	font-family: Arial;
-	font-size: 8pt;
-	font-weight: 700;
+	font-size: 6pt;
+	font-weight: 400;
 	position:absolute;
 	width: 15%;
+	color: #FFF;
 	bottom: 0;
 	right: 0;
-	color: #FFF;
 	background: rgba(147,147,147,0.6);
 }
