@@ -107,7 +107,7 @@ function login(){
 		if(log == "1") {
 			$("#result_login_data").html("Login done!");
 			$("#result_login").fadeIn("slow");
-			window.location.replace("/scoreboard/level2.html");
+			window.location.replace("/scoreboard/scoreboard");
 		}
 		if(log == "0") {
 			$("#result_login_data").html("Login error <br />Please check login data");
@@ -128,7 +128,7 @@ function logout(){
     success: function(data, status){
 		log = data.r;
 		if(log == "1") {
-			window.location.replace("/scoreboard/login.html");
+			window.location.replace("/scoreboard/login");
 		}
     },
     error: function (xhr, textStatus, thrownError) {
@@ -149,7 +149,7 @@ function getPersonalScore(){
     url: urlweb + "team/status",
     success: function(data, status){
     	if (data.status == "Plz login.") {
-    		window.location.replace("/scoreboard/login.html");
+    		window.location.replace("/scoreboard/login");
     	}
     	$("#chall").hide();
     	close_chall();
@@ -187,13 +187,7 @@ function getPersonalScore(){
 			warns.push(w);
 		}
 
-		warns.sort(compare_unixtime);
-		$("#hints_list").html("");
-		for(l = 0; l < warns.length; l++) {
-			date = new Date(warns[l].unixtime * 1000),
-			datevalue = date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear() +" [" + date.getHours() + ":" + date.getMinutes() + "] ";
-			$("#hints_list").append("<li class=\"" + warns[l].type + "\"> [ " + warns[l].type + " ] " + datevalue + " - " + warns[l].message + "</li>")
-		}
+		show_hints();
     },
     error: function (xhr, textStatus, thrownError) {
         $("#result_data").html("Network error. Please try again.");
@@ -203,8 +197,9 @@ function getPersonalScore(){
 }
 
 function getChallenges(personal){
-
-	$.blockUI("<h3>Loading...</h3>"); 
+	if(personal != "refresh") {
+		$.blockUI("<h1>Loading...</h1>"); 
+	}
   $.ajax({
     type:"GET",
     url: urlweb + "common/status",
@@ -244,6 +239,17 @@ function getChallenges(personal){
     	$("#result").fadeIn("slow");
     }
   });
+}
+
+
+function show_hints() {
+	warns.sort(compare_unixtime);
+	$("#hints_list").html("");
+	for(l = 0; l < warns.length; l++) {
+		date = new Date(warns[l].unixtime * 1000),
+		datevalue = date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear() +" [" + date.getHours() + ":" + date.getMinutes() + "] ";
+		$("#hints_list").append("<li class=\"" + warns[l].type + "\"> [ " + warns[l].type + " ] " + datevalue + " - " + warns[l].message + "</li>")
+	}
 }
 
 function reset_chall() {
