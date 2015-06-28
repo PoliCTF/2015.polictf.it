@@ -70,8 +70,9 @@ function loadChallange(id){
 			error: function() { 
 				$("#result_login_data").html("Network error. Please try again.");
     			$("#result_login").fadeIn("slow");
-			}
-		});
+			},
+    		cache: false
+        });
 	}
 	else {
 		$("#chall_html").html("<h2>Challange closed <br />Check Later</h2>");
@@ -94,7 +95,8 @@ function getScores(){
     error: function (xhr, ajaxOptions, thrownError) {
         $("#result_login_data").html("Network error. Please try again.");
     	$("#result_login").fadeIn("slow");
-	}
+	},
+    cache: false
   });
 }
 
@@ -124,7 +126,8 @@ function login(){
     error: function (xhr, textStatus, thrownError) {
     	$("#result_login_data").html("Network error. Please try again.");
     	$("#result_login").fadeIn("slow");
-    }
+    },
+    cache: false
   });
 }
 
@@ -143,7 +146,8 @@ function logout(){
     },
     xhrFields: {
        withCredentials: true
-   	}
+   	},
+    cache: false
   });
 }
 
@@ -199,7 +203,8 @@ function getPersonalScore(){
     error: function (xhr, textStatus, thrownError) {
         $("#result_data").html("Network error. Please try again.");
     	$("#result").fadeIn("slow");
- 	}
+ 	},
+    cache: false
 	});
 }
 
@@ -230,7 +235,7 @@ function getChallenges(personal){
 		for(i = 0; i < team.length; i++){
 			teams[i] = team[i];
 		}
-
+        warns = []
 		for(k = 0; k < warn.length; k++) {
 			w = {
 				type: "global",
@@ -249,7 +254,8 @@ function getChallenges(personal){
     error: function() { 
     	$("#result_data").html("Network error. Please try again.");
     	$("#result").fadeIn("slow");
-    }
+    },
+    cache: false
   });
 }
 
@@ -317,7 +323,9 @@ function submit_flag() {
 		else if (res == "slowdown") {
 			$("#result_data").html("<h2>Too fast!!! Please wait 2 seconds to submit again the flag.</h2>");
 		}
-		getPersonalScore();
+		// getPersonalScore();
+        getChallenges("refresh");
+        getPersonalScore();
 		$("#result").fadeIn("slow");
 		$("#flag").val("");
     },
@@ -325,7 +333,8 @@ function submit_flag() {
         close_chall();
     	$("#result_data").html("Network error. Please try again.");
     	$("#result").fadeIn("slow");
-    }
+    },
+    cache: false
   });
 }
 
@@ -351,7 +360,6 @@ function durToString(dur){
 function player_update(){
     if (player.playing){
         $("#player_time").html(durToString(player.currentTime) + "/" + durToString(player.duration))
-//        var player_update_timeout = setTimeout(player_update, 1000);
     }
 }
 
@@ -361,7 +369,7 @@ function player_progress(data){
 }
 
 function player_start(){
-    player = AV.Player.fromURL('/tunes/oldmcdonald.flac');
+    player = AV.Player.fromURL('/tunes/test.flac');
     player.play();
     player_update();
     player.on("end", player_start);
@@ -426,7 +434,8 @@ function getChallengesList(){
 	    error: function() { 
 	    	$("#result_data").html("Network error. Please try again.");
 	    	$("#result").fadeIn("slow");
-	    }
+	    },
+    cache: false
   	});
 }
 
@@ -445,13 +454,14 @@ function openChall(id){
 				$("#chall_html").html(html);
 				if(file != "") {
 					$("#chall_file").attr("href",file);
-					$("#chall_file").html("<i>Source FILE</i>");
+					$("#chall_file").html("<i>Download</i>");
 				}
 			},
 			error: function() { 
 				$("#result_login_data").html("Network error. Please try again.");
     			$("#result_login").fadeIn("slow");
-			}
+			},
+            cache: false
 		});
 	}
 	$("#chall").fadeIn("slow");
