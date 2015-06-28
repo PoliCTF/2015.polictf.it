@@ -2,7 +2,7 @@ var challenges = [];
 var teams = [];
 var warns = [];
 
-var urlweb = "http://scoreboard.polictf.local.necst.it/scoreboard/";
+var urlweb = "https://scoreboard.polictf.it/";
 
 function displayList(id){
 	reset_chall();
@@ -35,7 +35,7 @@ function loadChallange(id){
 	} 
 	reset_chall();
 	$("#result").hide();
-	if($("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0].indexOf("donechallenge") < 0 && $("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0].indexOf("closedchallenge") < 0) {
+	if(id != 26 && $("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0].indexOf("donechallenge") < 0 && $("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0].indexOf("closedchallenge") < 0) {
 		url = $("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0] + "_clicked.png";
 		$("#chall"+ id +"_img").attr("src", url);
 	}
@@ -46,18 +46,25 @@ function loadChallange(id){
 			success: function(data, status){
 				name = data.name;
 				html = data.html;
-				file = data.file; 
-				if($("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0].indexOf("donechallenge") < 0) {
-					$("#chall_points").text(challenges[id].points + " Points");
-				}
-				else {
-					$("#chall_points").text(challenges[id].points + " Points - SOLVED");
-				}
+				file = data.file;
+                html = html.replace("\n", "<br>");
+
+                if (id == 26){
+                        $("#chall_points").text(challenges[id].points + " Points");
+                }
+                    else{
+    				if($("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0].indexOf("donechallenge") < 0) {
+    					$("#chall_points").text(challenges[id].points + " Points");
+    				}
+    				else {
+    					$("#chall_points").text(challenges[id].points + " Points - SOLVED");
+    				}
+                }
 				$("#chall_name").html("<h2>"+name+"</h2>");
 				$("#chall_html").html(html);
 				if(file != "") {
 					$("#chall_file").attr("href",file);
-					$("#chall_file").html("<i>Source FILE</i>");
+					$("#chall_file").html("<i>Download</i>");
 				}
 			},
 			error: function() { 
@@ -206,7 +213,12 @@ function getChallenges(personal){
     success: function(data, status){
 		chall = data.status;
 		warn = data.globalwarnings;
-		for(i = 0; i < 25; i++){
+        if(chall.length <= 0){
+            $("#result_data").html("Challenges not found. Please try again.");
+            $("#result").fadeIn("slow");
+            return;
+        }
+		for(i = 0; i < 26; i++){
             var c = chall[i];
 			challenges[c.idchallenge] = c;
 			if(challenges[c.idchallenge].status == "closed") {
@@ -253,7 +265,7 @@ function show_hints() {
 }
 
 function reset_chall() {
-	for(i = 1; i < challenges.length; i++) {
+	for(i = 1; i < challenges.length-1; i++) {
 		$("#chall"+ i +"_img").attr("src", $("#chall"+ i +"_img").attr("src").split("_")[0].split(".")[0] + ".png");
 	}
 	$("#chall_name").html("");
@@ -286,10 +298,11 @@ function submit_flag() {
     },
     crossDomain: true,
     success: function(data, status){
+        close_chall();
 		res = data.result;
 		flag = data.flag;
 		id = data.id;
-		if( res > 0 ){
+		if( res >= 0 ){
 			$("#result_data").html("<h2>Challenge " + id + " solved! <br />Points gained: " + res + "</h2>");
 		}
 		else if (res == "wrong") {
@@ -308,7 +321,8 @@ function submit_flag() {
 		$("#result").fadeIn("slow");
 		$("#flag").val("");
     },
-    error: function() { 
+    error: function() {
+        close_chall();
     	$("#result_data").html("Network error. Please try again.");
     	$("#result").fadeIn("slow");
     }
@@ -343,7 +357,6 @@ function player_update(){
 
 
 function player_progress(data){
-    // console.log(data)
     player_update();
 }
 
@@ -395,7 +408,7 @@ function getChallengesList(){
 	    url: urlweb + "common/challenges",
 	    success: function(data, status){
 			chall = data;
-			for(i = 1; i < challenges.length; i++){
+			for (i in chall){
 				if(challenges[i].status =="open") {
 					str = "<ul id='chall"+ i +"' onclick='openChall("+ i +");' onmouseover='onbutton(\"chall" + i +"\")'><li>" + 
 		                  chall[i].cat + 
