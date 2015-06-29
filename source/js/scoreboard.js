@@ -226,9 +226,17 @@ function getChallenges(personal){
 		for(i = 0; i < 26; i++){
             var c = chall[i];
 			challenges[c.idchallenge] = c;
-			if(challenges[c.idchallenge].status == "closed") {
-				url = "/images/closedchallenge.png";
-				$("#chall"+ c.idchallenge +"_img").attr("src", url);
+			if(i != 25) {
+				if(challenges[c.idchallenge].status == "closed") {
+					url = "/images/closedchallenge.png";
+					$("#chall"+ c.idchallenge +"_img").attr("src", url);
+				}
+				if(personal == "refresh") {
+					if(challenges[c.idchallenge].status == "open" && $("#chall"+ c.idchallenge +"_img").attr("src").indexOf("closed") > -1) {
+						url = $("#chall"+ c.idchallenge +"_img").parent().parent().children("a").children("img").attr("src");
+						$("#chall"+ c.idchallenge +"_img").attr("src", url);
+					}
+				}
 			}
 		}
 		team = data.scores;
@@ -266,7 +274,11 @@ function show_hints() {
 	for(l = 0; l < warns.length; l++) {
 		date = new Date(warns[l].unixtime * 1000),
 		datevalue = date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear() +" [" + date.getHours() + ":" + date.getMinutes() + "] ";
-		$("#hints_list").append("<li class=\"" + warns[l].type + "\"> [ " + warns[l].type + " ] " + datevalue + " - " + warns[l].message + "</li>")
+		var pt = "";
+		if(warns[l].points && warns[l].points > 0){
+			pt = " - Points: " + warns[l].points;
+		}
+		$("#hints_list").append("<li class=\"" + warns[l].type + "\"> [ " + warns[l].type + " ] " + datevalue + pt +" - " + warns[l].message + "</li>")
 	}
 }
 
@@ -402,9 +414,9 @@ $(function() {
 
 
 function compare_unixtime(a,b) {
-  if (a.unixtime < b.unixtime)
-    return -1;
   if (a.unixtime > b.unixtime)
+    return -1;
+  if (a.unixtime < b.unixtime)
     return 1;
   return 0;
 }
