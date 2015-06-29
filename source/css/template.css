@@ -16,6 +16,10 @@ html, body{
 	padding: 0px;
 }
 
+input {
+	color: black;
+}
+
 body{
 	height: 100%;
 	background: url('/images/background.jpg') repeat-x;
@@ -119,10 +123,6 @@ body{
 	bottom: 68px;
 }
 
-#submit form, #logout form{
-	margin-top: 15px;
-}
-
 #sun{
 	position: absolute;
 	right: 50px;
@@ -184,6 +184,7 @@ body{
 	font-family: SuperMario;
 	text-align: center;
 	text-transform: uppercase; 
+	font-size: 20px;
 }
 
 #X {

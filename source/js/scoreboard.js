@@ -492,7 +492,7 @@ function getPersonalChallenge(){
     url: urlweb + "team/status",
     success: function(data, status){
     	if (data.status == "Plz login.") {
-    		window.location.replace("/scoreboard/login");
+    		return;
     	}
 		if(data.solved) {
 			solved = data.solved;
@@ -519,7 +519,7 @@ function getPersonalTeam(){
     url: urlweb + "team/status",
     success: function(data, status){
     	if (data.status == "Plz login.") {
-    		window.location.replace("/scoreboard/login");
+    		return;
     	}
 		$("#"+ data.statosquadra.nome).css("background-color", "rgb(255,255,102)");
     },
