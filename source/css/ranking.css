@@ -34,6 +34,10 @@ body{
 	color: #333;
 }
 
+ul {
+	margin: 0px;
+}
+
 h1 {
 	font-family: amiga;
 	color: #fff100;
