@@ -252,7 +252,7 @@ function getChallenges(personal){
 			}
 			warns[k] = w;
 		}
-		if(!personal) {
+		if(!personal || personal == "refresh") {
 			getPersonalScore();
 		}
 		else {
@@ -335,11 +335,9 @@ function submit_flag() {
 		else if (res == "slowdown") {
 			$("#result_data").html("<h2>Too fast!!! Please wait 2 seconds to submit again the flag.</h2>");
 		}
-		// getPersonalScore();
-        getChallenges("refresh");
-        getPersonalScore();
 		$("#result").fadeIn("slow");
 		$("#flag").val("");
+		getChallenges("refresh");
     },
     error: function() {
         close_chall();
