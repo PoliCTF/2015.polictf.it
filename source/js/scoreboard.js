@@ -233,7 +233,7 @@ function getChallenges(personal){
 				}
 				if(personal == "refresh") {
 					if(challenges[c.idchallenge].status == "open" && $("#chall"+ c.idchallenge +"_img").attr("src").indexOf("closed") > -1) {
-						url = $("#chall"+ c.idchallenge +"_img").parent().parent().children("a").children("img").attr("src");
+						url = $("#chall"+ c.idchallenge +"_img").parent().parent().parent().children("a").children("img").attr("src");
 						$("#chall"+ c.idchallenge +"_img").attr("src", url);
 					}
 				}
