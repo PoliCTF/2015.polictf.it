@@ -75,7 +75,7 @@ function loadChallange(id){
         });
 	}
 	else {
-		$("#chall_html").html("<h2>Challange closed <br />Check Later</h2>");
+		$("#chall_html").html("<h2>Challenge closed <br />Check Later</h2>");
 	}
 	$("#chall").fadeIn("slow");
 }
