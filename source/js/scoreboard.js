@@ -302,7 +302,8 @@ function close_chall() {
 	var elements=document.getElementsByClassName("description");
 	for(i = 0; i < elements.length; i++){
 		$(elements[i]).hide();
-	}	
+	}
+	$("#credits_text").hide();
 	$("#chall").hide();
 }
 
