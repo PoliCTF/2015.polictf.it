@@ -262,6 +262,11 @@ function getChallenges(personal){
     error: function() { 
     	$("#result_data").html("Network error. Please try again.");
     	$("#result").fadeIn("slow");
+    	if(teams.length==0) {
+    		setTimeout(function(){
+		    	window.location.replace("/scoreboard/login");
+			}, 2000);
+		}
     },
     cache: false
   });
