@@ -385,7 +385,7 @@ function player_progress(data){
 }
 
 function player_start(){
-    player = AV.Player.fromURL('/tunes/test.flac');
+    player = AV.Player.fromURL('/tunes/oldmcdonald.flac');
     player.play();
     player_update();
     // player.on("end", player_start);
