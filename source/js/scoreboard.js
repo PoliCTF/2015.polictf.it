@@ -405,17 +405,6 @@ $(function() {
     });
 });
 
-$(function() {
-    $("#login_form input").keypress(function (e) {
-        if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
-        	login();
-            return false;
-        } else {
-            return true;
-        }
-    });
-});
-
 
 function compare_unixtime(a,b) {
   if (a.unixtime > b.unixtime)
@@ -531,6 +520,10 @@ function getPersonalTeam(){
     		return;
     	}
 		$("#"+ data.statosquadra.nome).css("background-color", "rgb(255,255,102)");
+
+		$('html, body').animate({
+        	scrollTop: $("#"+ data.statosquadra.nome).offset().top
+   		 }, 2000);
     },
     error: function (xhr, textStatus, thrownError) {
         $("#result_data").html("Network error. Please try again.");
