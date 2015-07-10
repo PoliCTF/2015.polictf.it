@@ -7,6 +7,7 @@ FILTER_PARTIALS = True
 # You can use patterns here eg: "deprecated/*"
 FILTER = [
     '.DS_Store',
+    'scoreboard/*',
     'webassets-cache/*',
     '.webassets-cache',
     'layout.html',
