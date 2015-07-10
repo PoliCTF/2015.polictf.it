@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="/js/blockui.js"></script>
 	<title>PoliCTF 2015 | Challenges</title>
 </head>
-<body onload="getChallenges(true);">
+<body onload="getChallenges('true');">
 
 	<div id="result" class="result_class">
 		<h2 id="X"><span style="text-align: right; cursor:pointer;" onclick="$('#result').hide()">X</span></h2>
@@ -66,7 +66,7 @@
 
 	<script type="text/javascript">
 		$(document).ajaxStop($.unblockUI); 
-		
+
 		function onbutton(id) {
 			$("#"+ id +"").css("cursor","pointer");
 		}

@@ -252,11 +252,11 @@ function getChallenges(personal){
 			}
 			warns[k] = w;
 		}
-		if(!personal || personal == "refresh") {
-			getPersonalScore();
+		if(personal == "true") {
+			getChallengesList();
 		}
 		else {
-			getChallengesList();
+			getPersonalScore();
 		}
     },
     error: function() { 
@@ -498,12 +498,12 @@ function getPersonalChallenge(){
     	if (data.status == "Plz login.") {
     		return;
     	}
-		if(data.solved) {
+		if (data.solved) {
 			solved = data.solved;
 			lensol = solved.length;
-		}
-		for(j = 0; j < lensol; j++) {
-			$("#chall"+ solved[j].id).css("background-color", "rgb(255,255,102)");
+			for(j = 0; j < lensol; j++) {
+				$("#chall"+ solved[j].id).css("background-color", "rgb(255,255,102)");
+			}
 		}
     },
     error: function (xhr, textStatus, thrownError) {
