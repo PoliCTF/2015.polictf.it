@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="/js/blockui.js"></script>
 	<title>PoliCTF 2015 | Rankings</title>
 </head>
-<body onload="getScores();">
+<body onload="getScores(); refr();">
 	<div id="cloud1">
 		<img src="/images/cloud.png" alt="cloud">
 	</div>
@@ -52,6 +52,9 @@
 
 	<script type="text/javascript">
 		$(document).ajaxStop($.unblockUI); 
+		function refr() {
+			setTimeout("location.reload(true);",120000);
+		}
 	</script>
 </body>
 </html>
