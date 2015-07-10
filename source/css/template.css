@@ -28,7 +28,7 @@ body{
 	background-position: 0px 0px;
 	font-family: SuperMario;
 	color: #fff;
-	animation: daynight_bk 100s infinite;
+	animation: daynight_bk 21600s infinite;
 }
 
 @keyframes daynight_bk {
@@ -142,7 +142,7 @@ body{
 	background-repeat: repeat-x;
 	background-position: 0px 0px;
 	opacity: 1.0;
-	animation: daynight_stars 100s infinite;
+	animation: daynight_stars 21600s infinite;
 }
 
 @keyframes daynight_stars {
@@ -162,7 +162,7 @@ body{
 	background: url('/images/sun.png');
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
-	animation: daynight_sun 100s infinite;
+	animation: daynight_sun 21600s infinite;
 }
 
 @keyframes daynight_sun {
@@ -188,7 +188,7 @@ body{
 	background: url('/images/moon.png');
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
-	animation: daynight_moon 100s infinite;
+	animation: daynight_moon 21600s infinite;
 }
 
 @keyframes daynight_moon {

@@ -382,7 +382,7 @@ function player_start(){
     player = AV.Player.fromURL('/tunes/test.flac');
     player.play();
     player_update();
-    player.on("end", player_start);
+    // player.on("end", player_start);
     player.on("progress", player_progress);
 
 }
