@@ -385,7 +385,7 @@ function player_progress(data){
 }
 
 function player_start(){
-    player = AV.Player.fromURL('/tunes/test.flac');
+    player = AV.Player.fromURL('/tunes/oldmcdonald.flac');
     player.play();
     player_update();
     // player.on("end", player_start);
@@ -458,6 +458,11 @@ function getChallengesList(){
 
 function openChall(id){
 	$("#result").hide();
+	$("#chall_name").html("");
+	$("#chall_html").html("");
+	$("#chall_points").text("");
+	$("#chall_file").removeAttr("href");
+	$("#chall_file").html("");
 	if(challenges[id].status == "open") {
 		$.ajax({
 			type:"GET",
