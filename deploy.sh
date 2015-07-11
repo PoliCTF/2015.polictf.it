@@ -4,6 +4,7 @@ if [ $? -eq 0 ]; then
     rm -rf build
     clay build
     cp source/news.html build/
+    cp -r source/scoreboard build/
     cd build
     git init
     git add -A
