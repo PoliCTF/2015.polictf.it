@@ -88,7 +88,7 @@ function getScores(){
     success: function(data, status){
       array_scores = data.scores;
       for(i = 0; i < array_scores.length; i++){
-	string = "<ul id=" + array_scores[i].name +"><li>" + (i+1) + "</li><li>" + array_scores[i].name + "</li><li>"+ array_scores[i].country +"</li><li class=\"image-points\">" + array_scores[i].points + "</li></ul>"; 
+	string = "<ul id='" + array_scores[i].name +"'><li>" + (i+1) + "</li><li>" + array_scores[i].name + "</li><li>"+ array_scores[i].country +"</li><li class=\"image-points\">" + array_scores[i].points + "</li></ul>"; 
 	$("#scores").append(string);
       }
       getPersonalTeam();
@@ -520,7 +520,7 @@ function getPersonalTeam(){
     		return;
     	}
 		$("#"+ data.statosquadra.nome).css("background-color", "rgb(255,255,102)");
-
+		
 		$('html, body').animate({
         	scrollTop: $("#"+ data.statosquadra.nome).offset().top
    		 }, 2000);
