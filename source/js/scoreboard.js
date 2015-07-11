@@ -10,7 +10,7 @@ function displayList(id){
 	for(i = 0; i < elements.length; i++){
 		$(elements[i]).hide();
 	}
-	
+
 	var elements=document.getElementsByClassName("description");
 	for(i = 0; i < elements.length; i++){
 		$(elements[i]).hide();
@@ -32,7 +32,7 @@ function loadChallange(id){
 	var elements=document.getElementsByClassName("description");
 	for(i = 0; i < elements.length; i++){
 		$(elements[i]).hide();
-	} 
+	}
 	reset_chall();
 	$("#result").hide();
 	if(id != 26 && $("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0].indexOf("donechallenge") < 0 && $("#chall"+ id +"_img").attr("src").split("_")[0].split(".")[0].indexOf("closedchallenge") < 0) {
@@ -67,7 +67,7 @@ function loadChallange(id){
 					$("#chall_file").html("<i>Download</i>");
 				}
 			},
-			error: function() { 
+			error: function() {
 				$("#result_login_data").html("Network error. Please try again.");
     			$("#result_login").fadeIn("slow");
 			},
@@ -81,14 +81,14 @@ function loadChallange(id){
 }
 
 function getScores(){
-	$.blockUI("<h3>Loading...</h3>"); 
+	$.blockUI("<h3>Loading...</h3>");
   $.ajax({
     type:"GET",
     url: urlweb +"common/status",
     success: function(data, status){
       array_scores = data.scores;
       for(i = 0; i < array_scores.length; i++){
-	string = "<ul id=" + array_scores[i].name +"><li>" + (i+1) + "</li><li>" + array_scores[i].name + "</li><li>"+ array_scores[i].country +"</li><li class=\"image-points\">" + array_scores[i].points + "</li></ul>"; 
+	string = "<ul id=" + array_scores[i].name +"><li>" + (i+1) + "</li><li>" + array_scores[i].name + "</li><li>"+ array_scores[i].country +"</li><li class=\"image-points\">" + array_scores[i].points + "</li></ul>";
 	$("#scores").append(string);
       }
       getPersonalTeam();
@@ -105,7 +105,7 @@ function login(){
   $.ajax({
     type:"POST",
     url: urlweb + "login",
-	data: { teamname: $("#username").val(), 
+	data: { teamname: $("#username").val(),
 			password: $("#password").val()
 	},
     xhrFields: {
@@ -154,7 +154,7 @@ function logout(){
 
 function getPersonalScore(){
   $.ajax({
-    type:"GET",	
+    type:"GET",
     xhrFields: {
        withCredentials: true
     },
@@ -178,7 +178,7 @@ function getPersonalScore(){
 		for(i = 0; i < teams.length; i++){
 			if(teams[i].name == team.nome) {
 				$("#team_ranking").html((i+1) + "/" + teams.length);
-			} 
+			}
 		}
 		for(j = 0; j < lensol; j++) {
 			url = "/images/donechallenge.png";
@@ -210,7 +210,7 @@ function getPersonalScore(){
 
 function getChallenges(personal){
 	if(personal != "refresh") {
-		$.blockUI("<h1>Loading...</h1>"); 
+		$.blockUI("<h1>Loading...</h1>");
 	}
   $.ajax({
     type:"GET",
@@ -259,7 +259,7 @@ function getChallenges(personal){
 			getPersonalScore();
 		}
     },
-    error: function() { 
+    error: function() {
     	$("#result_data").html("Network error. Please try again.");
     	$("#result").fadeIn("slow");
     	if(teams.length==0) {
@@ -303,7 +303,7 @@ function close_chall() {
 	for(i = 0; i < elements.length; i++){
 		$(elements[i]).hide();
 	}
-	
+
 	var elements=document.getElementsByClassName("description");
 	for(i = 0; i < elements.length; i++){
 		$(elements[i]).hide();
@@ -423,21 +423,21 @@ function getChallengesList(){
 			chall = data;
 			for (i in chall){
 				if(challenges[i].status =="open") {
-					str = "<ul id='chall"+ i +"' onclick='openChall("+ i +");' onmouseover='onbutton(\"chall" + i +"\")'><li>" + 
-		                  chall[i].cat + 
-		                  "</li><li>" + 
-		                  chall[i].name + 
-		                  "</li><li>"+ 
-		                  challenges[i].points + 
-		                  "</li><li>" + 
-		                  challenges[i].numsolved + "/" + teams.length + 
-		                  "</li></ul>"; 
+					str = "<ul id='chall"+ i +"' onclick='openChall("+ i +");' onmouseover='onbutton(\"chall" + i +"\")'><li>" +
+		                  chall[i].cat +
+		                  "</li><li>" +
+		                  chall[i].name +
+		                  "</li><li>"+
+		                  challenges[i].points +
+		                  "</li><li>" +
+		                  challenges[i].numsolved + "/" + teams.length +
+		                  "</li></ul>";
 					$("#solved_chall").append(str);
 				}
 	        }
 	        getPersonalChallenge();
 	    },
-	    error: function() { 
+	    error: function() {
 	    	$("#result_data").html("Network error. Please try again.");
 	    	$("#result").fadeIn("slow");
 	    },
@@ -459,7 +459,7 @@ function openChall(id){
 			success: function(data, status){
 				name = data.name;
 				html = data.html;
-				file = data.file; 
+				file = data.file;
 				$("#chall_points").text(challenges[id].points + " Points");
 				$("#chall_name").html("<h2>"+name+"</h2>");
 				$("#chall_html").html(html);
@@ -468,7 +468,7 @@ function openChall(id){
 					$("#chall_file").html("<i>Download</i>");
 				}
 			},
-			error: function() { 
+			error: function() {
 				$("#result_login_data").html("Network error. Please try again.");
     			$("#result_login").fadeIn("slow");
 			},
@@ -483,7 +483,7 @@ function openChall(id){
 
 function getPersonalChallenge(){
   $.ajax({
-    type:"GET",	
+    type:"GET",
     xhrFields: {
        withCredentials: true
     },
@@ -506,29 +506,35 @@ function getPersonalChallenge(){
  	},
     cache: false
 	});
-} 
+}
 
 function getPersonalTeam(){
   $.ajax({
-    type:"GET",	
+    type:"GET",
     xhrFields: {
        withCredentials: true
     },
     url: urlweb + "team/status",
     success: function(data, status){
-    	if (data.status == "Plz login.") {
-    		return;
-    	}
-		$("#"+ data.statosquadra.nome).css("background-color", "rgb(255,255,102)");
+        if (data.status == "Plz login.") {
+            return;
+        }
 
-		$('html, body').animate({
-        	scrollTop: $("#"+ data.statosquadra.nome).offset().top
-   		 }, 2000);
+        var team_div = $("#" + data.statosquadra.nome);
+
+        if(team_div.length) {
+            $("#"+ data.statosquadra.nome).css("background-color", "rgb(255,255,102)");
+
+            $('html, body').animate({
+                scrollTop: $("#"+ data.statosquadra.nome).offset().top
+            }, 2000);
+        }
+
     },
     error: function (xhr, textStatus, thrownError) {
         $("#result_data").html("Network error. Please try again.");
-    	$("#result").fadeIn("slow");
- 	},
+        $("#result").fadeIn("slow");
+    },
     cache: false
-	});
-} 
+  });
+}
