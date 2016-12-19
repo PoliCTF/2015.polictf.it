@@ -9,5 +9,5 @@ if [ $? -eq 0 ]; then
     git init
     git add -A
     git commit -m "deploy static website"
-    git push -u git@github.com:PoliCTF/polictf.github.io master:master --force
+    git push -u git@github.com:PoliCTF/2015.polictf.it master:master --force
 fi
