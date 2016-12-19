@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="it">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PoliCTF 2015</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web:400,700' rel='stylesheet' type='text/css'>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <span class="navbar-brand"><a href="http://polictf.it"><img src="images/logo.png" /><span>PoliCTF</span>2015</a></span>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="instructions">Instructions</a>
+                    </li>
+                    <li>
+                        <a href="javascript:openmodalnews()">News</a>
+                    </li>
+                    <!-- <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registration <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="registration">Register</a></li>
+                  <li><a href="http://s.maggi.cc/polictf2015-local" target="_blank">PoliMi students</a></li>
+                  </ul>
+                  </li>-->
+                    <li>
+                        <a href="mailto:info@polictf.it"><span class="glyphicon glyphicon-envelope"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        
+<div style="font-size: 12pt">
+<h1>Instructions</h1>
+<strong>Capture the Flags (CTFs)</strong> are competitions that involve many aspects of information security: cryptography, steganography, binary analysis, reverse engineering, mobile security and others.<br />
+There are two common types of CTFs: <strong>Jeopardy</strong> and <strong>Attack-Defence</strong>.<br /><br />
+PoliCTF is a Jeopardy style CTF.<br />It has some questions (challenges) of different categories (Crypto, Reversing, Web, Pwnable, Forensics, GrabBag). <br />The objective of each challenge is to recover a special string called flag. PoliCTF flags are in the format "<strong><em>flag{<flag_here>}</em></strong>". The whole string including "flag{" and "}"" needs to be submitted as flag. <br />
+Teams gain points for every solved challenge.<br />The first three solvers for a challenge get bonus points (6%, 4% and 2% of the challenge value). <br />Some challenges are initially locked and can be opened only after some team solve unlocked challenges.
+<br /><br /><strong>PoliCTF scoreboard</strong> can be accessed <a href="http://polictf.it/scoreboard/login">here</a>.
+<br />You can download the packages of challenges directly from the scoreboard, or from this <a href="http://polictf.it/challenges.torrent">torrent</a>. <span style="font-size: 8pt">(Some challenge will be available only on the torrent)</span><br /> Each package has been encrypted with AES-256.
+<br />You can find the decryption keys on the scoreboard below the description of each challenge (if the challenge is open).<br /> 
+To decrypt the packages you can use GPG: <br /> 
+<em style="font-size: 13pt">gpg -o &lt;output_file&gt; -d &lt;encrypted_file&gt;</em> <br /><span style="font-size: 8pt">(Type the correct key when requested)</span>
+</div>
+
+
+        <div class="modal fade" id="news_tweets">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">Competition organized by the research groups of <a href="http://www.necst.it">NECSTLab</a> and supported by the CINI Cyber Security National Lab <span class="pull-right">~ design: <a href="https://github.com/JWuCines">JWuCines</a> &amp; <a href="https://twitter.com/_ocean">ocean</a> || 3d logo: <a href="https://it.linkedin.com/pub/ilaria-scarcia/25/686/510/en">Ila9</a></span></p>
+        </div>
+    </footer>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $('.nolink').popover().click(function () {
+            setTimeout(function () {
+                $('.nolink').popover('hide');
+            }, 5000);
+        });
+        news_tweets_loaded = false;
+        $("#news_tweets").on('shown.bs.modal', function() {
+            if(!news_tweets_loaded) {
+                $(this).find(".modal-content").load( "news.html" );
+                news_tweets_loaded = true;
+            }
+        })
+        function openmodalnews(){
+            $('#news_tweets').modal()
+        }
+    </script>
+
+    
+
+</body>
+
+</html>

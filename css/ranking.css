@@ -1,0 +1,215 @@
+@font-face {
+	font-family: 'SuperMarioGalaxy';
+	src: url('/fonts/SuperMarioGalaxy.eot'),
+	    url('/fonts/SuperMarioGalaxy.woff2') format('woff2'),
+	    url('/fonts/SuperMarioGalaxy.woff') format('woff'),
+	    url('/fonts/SuperMarioGalaxy.ttf') format('truetype'),
+	    url('/fonts/SuperMarioGalaxy.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: amiga;
+    src: url('../fonts/TopazPlus.eot');
+    src: url('../fonts/TopazPlus.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/TopazPlus.woff2') format('woff2'),
+         url('../fonts/TopazPlus.woff') format('woff'),
+         url('../fonts/TopazPlus.ttf') format('truetype'),
+         url('../fonts/TopazPlus.svg#topazplus_a600a1200a4000Rg') format('svg');
+    font-weight: 400;
+}
+
+html, body{
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+body{
+	height: 100%;
+	font-family: amiga;
+	background: url('/images/background.jpg') repeat-x;
+	background-color: #36e5e1;
+	color: #333;
+}
+
+.container {
+	min-height: 84.8%;
+}
+
+ul {
+	margin: 0px;
+}
+
+h1 {
+	font-family: amiga;
+	color: #fff100;
+	font-size: 3em;
+	padding-bottom: 20px;
+}
+
+h1 a, h1 a:hover {
+	color: #fff100;
+	text-decoration: underline;
+}
+
+.wrapper {
+	z-index: 100;
+}
+
+.blockUI h1 {
+	color: #000;
+}
+
+ul{
+	list-style-type: none;
+	border-bottom: 2px solid;
+	overflow: hidden;
+	z-index: 100;
+}
+
+ul.header{
+	font-size: 1.2em;
+}
+
+li{
+	display: block;
+	float: left;
+	padding: 5px;
+}
+
+ul li:first-child{
+	width: 15%;
+}
+
+ul li:nth-child(2){
+	width: 45%;
+}
+
+ul li:nth-child(3){
+	width: 20%;
+}
+
+ul li:nth-child(4){
+	width: 20%;
+}
+
+.image-points::before{
+   content: '$\0020';
+   font-size: 1.2em;
+   color:#e0e000;
+}
+
+.image-levels::before{
+	content: "\02605\0020";
+	font-size: 1.2em;
+	color:#e0e000;
+}
+
+.page-header{
+	border-bottom: none;
+	text-align: center;
+}
+
+#cloud1{
+	position: absolute;
+	top: 125px;
+	left: 5px;
+}
+
+#cloud2{
+	position: absolute;
+	top: 60px;
+	left: 230px;
+}
+
+#sun{
+	position: absolute;
+	right: 50px;
+	top: 120px;
+}
+
+#trees{
+	background: url('/images/trees.png') repeat-x;
+	width: 100%;
+	height: 30px;
+	z-index: 1;
+}
+
+#floor{
+	position: absolute;
+	background: url('/images/floor.jpg') repeat-x;
+	width: 100%;
+	height: 78px;
+	z-index: 3;
+}
+
+.description, .result_class {
+  background: none repeat scroll 0 0 #F8F8F8;
+  border: 5px solid #DFDFDF;
+  padding: 5px;
+  color: #000;
+  font-size: 10px;
+  width: 500px;
+  display: none;
+  z-index: 999;
+  position: absolute;
+  top: 100px;
+  margin-left: auto;
+margin-right: auto;
+left: 0;
+right: 0;
+  font-family: amiga;
+}
+
+.description h2, .result_class h2{
+	font-family: amiga;
+	color: #000;
+	text-align: center;
+	text-transform: uppercase; 
+}
+
+#X {
+	font-family: amiga;
+	text-align: right;
+	text-transform: uppercase; 
+}
+
+.center {
+	font-family: amiga;
+	text-align: center;
+}
+.description p {
+	font-family: "Arial";
+  	font-size: 10pt;
+}
+
+.description a, a:hover {
+	color: #000;
+}
+
+.description p.center, .result_class p.center {
+	font-family: amiga;
+	text-align: center;
+}
+
+#credits_id {
+	position:absolute;
+	bottom: 0;
+	right: 0;
+	width: 40px;
+}
+
+#credits_text {
+	font-family: Arial;
+	font-size: 8pt;
+	font-weight: 400;
+	color: #FFF;
+	position:absolute;
+	right: 10px;
+	bottom: 50px;
+	background-color: rgba(147,147,147,0.8);
+	border: solid 3px #000;
+	padding: 5px;
+}

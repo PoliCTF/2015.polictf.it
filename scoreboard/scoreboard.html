@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link href="/css/bootstrap.glyph.css" rel="stylesheet">
+	<link href="/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+	<link href="/css/template.css" media="screen" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="/js/jquery.js"></script>	
+	<script type="text/javascript" src="/js/scoreboard.js"></script>
+	<script type="text/javascript" src="/js/blockui.js"></script>
+	<script type="text/javascript" src="/js/aurora.js"></script>
+	<script type="text/javascript" src="/js/flac.js"></script>
+	<script type="text/javascript" src="/js/mp3.js"></script>
+	<title>PoliCTF 2015</title>
+</head>
+<body onload="reload_ajax();">
+	<div id="stars">
+	</div>
+	<div id="cloud1">
+		<img src="/images/cloud.png" alt="cloud">
+	</div>
+	<div id="cloud2">
+		<img src="/images/cloud.png" alt="cloud">
+	</div>
+	<div id="moon">
+	</div>
+	<div id="sun">
+		<img src="/images/cloud.png" alt="cloud">
+	</div>
+
+	<div id="player">
+		<span id="player_btn" class="glyphicon glyphicon-pause" aria-hidden="true" onClick="player_btn();"></span>
+		<span id="player_time" onclick="loadChallange('26')"></span>
+	</div>
+	<div id="legend">
+		<div><img src="/images/blackchallenge.png" /> Grab Bag</div>
+		<div><img src="/images/bluechallenge.png" /> Crypto</div>
+		<div><img src="/images/redchallenge.png" /> Reversing</div>
+		<div><img src="/images/greenchallenge.png" /> Web</div>
+		<div><img src="/images/orangechallenge.png" /> Pwnable</div>
+		<div><img src="/images/yellowchallenge.png" /> Forensics</div>
+		<div><img src="/images/closedchallenge.png" /> Closed</div>
+		<div><img src="/images/donechallenge.png" /> Solved</div>
+	</div>
+	<div id="wrapper">
+		<div id="top" style="z-index:999">
+			<div id="center" style="display: table; margin: 0 auto;">
+				<div id="points">
+					<label>Team</label>
+					<p id="team_name"></p>
+				</div>
+				<div id="points">
+					<label>Points</label>
+					<p id="team_points"></p>
+				</div>
+				<div id="solved_challenges">
+					<label><a href="challenges">Solved Challenges</a></label>
+					<a href="challenges"><p id="team_solved"></p></a>
+				</div>
+				<div id="position">
+					<label><a href="ranking">Ranking</a></label>
+					<a href="ranking"><p id="team_ranking"></p></a>
+				</div>
+				<div id="submit">
+					<label>Submit Flag</label>
+					<form id="submit_flag_form">
+						<input type="text" id="flag" name="flag" value="flag{insert_flag_here}" onclick="this.value='';">
+						<input type="button" name="submit" value="submit" onclick="submit_flag()">
+					</form>
+				</div>
+				<div id="logout">
+					<label>Logout</label>
+					<form>
+						<input type="button" name="submit" value="logout" onclick="logout()">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div id="result" class="result_class">
+			<h2 id="X"><span style="text-align: right; cursor:pointer;" onclick="$('#result').hide()">X</span></h2>
+			<p id="result_data" class="center"></p>
+		</div> 	
+
+		<div id="chall" class="description">
+			<h2 id="X"><span style="text-align: right; cursor:pointer;" onclick="close_chall()">X</span></h2>
+			<p id="chall_name"></p>
+			<p id="chall_points" class="center"></p>
+			<p id="chall_html"></p>
+			<p><a id="chall_file"></a>
+		</div>
+
+		<div id="block7" style="z-index: 3; width: 204px; height: 61px; bottom: 400px; left: 300px;" class="challenge_layout2">				
+			<a onclick="displayList('list7')"><img style="margin-top: 0px; margin-left: 68px;" src="/images/blackchallenge.png" alt="list7"></a>
+			<div id="list7" class="challList" style="visibility: hidden">
+				<a onclick="loadChallange('13')"><img id="chall13_img" style="margin-top: -61px; margin-left: -136px;" src="/images/blackchallenge.png"></a>
+				<a onclick="loadChallange('14')"><img id="chall14_img" style="margin-top: -61px; margin-left: -68px;" src="/images/blackchallenge.png"></a>
+				<a onclick="loadChallange('15')"><img id="chall15_img" style="margin-top: -61px; margin-left: 0px;" src="/images/blackchallenge.png"></a>
+				<a onclick="loadChallange('16')"><img id="chall16_img" style="margin-top: -122px; margin-left: 204px;" src="/images/blackchallenge.png"></a>
+				<a onclick="loadChallange('17')"><img id="chall17_img" style="margin-top: -122px; margin-left: 273px;" src="/images/blackchallenge.png"></a>
+			</div>
+		</div>
+
+		<div id="block1" style="z-index: 4; width: 204px; height: 61px; left: 478px; bottom: 78px;" class="challenge_layout2">
+			<a onclick="displayList('list1')"><img style="margin-top: 0px; margin-left: 0px;" src="/images/bluechallenge.png" alt="list1"></a>
+			<div id="list1" class="challList" style="visibility: hidden">
+				<a onclick="loadChallange('1')"><img id="chall1_img" style="margin-top: -61px; margin-left: -204px;" src="/images/bluechallenge.png"></a>
+				<a onclick="loadChallange('2')"><img id="chall2_img" style="margin-top: -61px; margin-left: -136px;" src="/images/bluechallenge.png"></a>
+				<a onclick="loadChallange('3')"><img id="chall3_img" style="margin-top: -61px; margin-left: -68px;" src="/images/bluechallenge.png"></a>
+				<a onclick="loadChallange('4')"><img id="chall4_img" style="margin-top: -61px; margin-left: 0px;" src="/images/bluechallenge.png"></a>
+			</div>
+		</div>
+
+
+		<div id="block3" style="z-index: 5; width: 136px; height: 122px; left: 70px; bottom: 139px;" class="challenge_layout2">
+			<a onclick="displayList('list3')"><img style="margin-top: 0px;" src="/images/redchallenge.png" alt="list2"></a>
+			<div id="list3" class="challList" style="visibility: hidden">
+				<a onclick="loadChallange('18')"><img id="chall18_img" style="margin-top: -61px; margin-left: -68px;" src="/images/redchallenge.png"></a>
+				<a onclick="loadChallange('19')"><img id="chall19_img" style="margin-top: -61px; margin-left: 0px;" src="/images/redchallenge.png"></a>
+				<a onclick="loadChallange('20')"><img id="chall20_img" style="margin-top: -122px; margin-left: 136px;" src="/images/redchallenge.png"></a>
+				<a onclick="loadChallange('21')"><img id="chall21_img" style="margin-top: -122px; margin-left: 204px;" src="/images/redchallenge.png"></a>
+				<a onclick="loadChallange('22')"><img id="chall22_img" style="margin-top: -122px; margin-left: 272px;" src="/images/redchallenge.png"></a>
+			</div>
+		</div>
+		<div id="block4" class="step_layout">
+			<div id="block4" style="width: 204px; height: 61px; bottom: 134px; left: 195px;" class="challenge_layout2">
+				<a onclick="displayList('list4')"><img style="margin-top: 0px;" src="/images/greenchallenge.png" alt="list3"></a>
+				<div id="list4" class="challList" style="visibility: hidden">
+					<a onclick="loadChallange('23')"><img id="chall23_img" style="margin-top: -61px; margin-left: -136px;" src="/images/greenchallenge.png"></a>
+					<a onclick="loadChallange('24')"><img id="chall24_img" style="margin-top: -61px; margin-left: -68px;" src="/images/greenchallenge.png"></a>
+					<a onclick="loadChallange('25')"><img id="chall25_img" style="margin-top: -61px; margin-left: 0px;" src="/images/greenchallenge.png"></a>
+				</div>
+			</div>
+			<div id="block5" style="z-index: 2; width: 136px; height: 61px; bottom: 270px; left: 40px;" class="challenge_layout2">
+				<a onclick="displayList('list5')"><img style="margin-top: 0px;" src="/images/orangechallenge.png" alt="list4"></a>
+				<div id="list5" class="challList" style="visibility: hidden">
+					<a onclick="loadChallange('5')"><img id="chall5_img" style="margin-top: 61px; margin-left: -272px;" src="/images/orangechallenge.png"></a>
+					<a onclick="loadChallange('6')"><img id="chall6_img" style="margin-top: 61px; margin-left: -204px;" src="/images/orangechallenge.png"></a>
+					<a onclick="loadChallange('7')"><img id="chall7_img" style="margin-top: 61px; margin-left: -136px;" src="/images/orangechallenge.png"></a>
+					<a onclick="loadChallange('8')"><img id="chall8_img" style="margin-top: 61px; margin-left: -68px;" src="/images/orangechallenge.png"></a>
+					<a onclick="loadChallange('9')"><img id="chall9_img" style="margin-top: 61px; margin-left: 0px;" src="/images/orangechallenge.png"></a>
+				</div>
+			</div>
+			<div id="block6" style="z-index: 1; width: 136px; height: 122px; bottom: 360px; left: 290px;" class="challenge_layout2">				
+				<a onclick="displayList('list6')"><img style="margin-top: 0px;" src="/images/yellowchallenge.png" alt="list4"></a>
+				<div id="list6" class="challList" style="visibility: hidden">
+					<a onclick="loadChallange('10')"><img id="chall10_img" style="margin-top: -61px; margin-left: -68px;" src="/images/yellowchallenge.png"></a>
+					<a onclick="loadChallange('11')"><img id="chall11_img" style="margin-top: -122px; margin-left: 68px;" src="/images/yellowchallenge.png"></a>
+					<a onclick="loadChallange('12')"><img id="chall12_img" style="margin-top: -122px; margin-left: 136px;" src="/images/yellowchallenge.png"></a>
+				</div>
+			</div>
+		</div>
+
+		<div id="block2" style="z-index: 3; width: 408px; height: 61px; left: 70px; bottom: 78px;" class="challenge_layout2">
+		</div>
+	</div>
+
+	<div id="mountains">
+	</div>
+	<div id="trees">
+	</div>
+	<div id="floor">
+		<div id="hints">
+			<ul id="hints_list">
+			</ul>
+		</div>
+		<img id="credits_id"src="/images/credits.png" onclick="$('#credits_text').show()" />
+		<div id="credits_text" style="display: none">
+			<h4 style="text-align: right; margin-top: 0px;"><span style="text-align: right; cursor:pointer;" onclick="$('#credits_text').hide()">X</span></h4>
+			Designed by<br /><strong>Alessandro De Vito</strong> and <strong>Laura Grossi</strong><br />
+			Developed by<br /><strong>Jiang Wu</strong> and <strong>Davide Quarta</strong><br />
+			Scoreboard managed by <strong>Stefano Sanfilippo</strong>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		$(document).ajaxStop($.unblockUI); 
+		
+		function reload_ajax() {
+			getChallenges();
+			setInterval(
+				function() {
+					getChallenges("refresh");
+				}, 60000);
+			var player;
+			player_start();
+		}
+	</script>
+
+</body>
+</html>

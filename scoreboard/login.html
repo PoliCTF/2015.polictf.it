@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link href="/css/template.css" media="screen" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/scoreboard.js"></script>
+	<script type="text/javascript" src="/js/blockui.js"></script>
+	<title>PoliCTF 2015</title>
+</head>
+<body>
+
+
+
+	<h2 class="center">Login Page</h2>
+	<form class="center" id="login_form" onclick="$('#result_login').hide()">
+		<label>Username</label><br /><input name="username" id="username" /><br /><br />
+		<label>Password</label><br /><input type="password" name="password" id="password" /><br /><br /><br />
+		<button id="login">Login</button>
+		<br /><br /><br />
+		<span>We use a different domain for our API,<br /> you'll need third party cookies <strong>enabled</strong></span>
+	</form>
+
+	<div id="result_login" class="result_class" onclick="$('#result_login').hide()">
+		<h2 id="X"><span style="text-align: right" onclick="$('#result_login').hide()">X</span></h2>
+		<h2 id="result_login_data" class="center"></h2>
+	</div>
+
+	<script>
+		$('#login').on('click', function() {
+			$("#login_form").submit(login());
+			return false;
+		});
+
+		$(function() {
+		    $("#login_form input").keypress(function (e) {
+		        if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+					return false;
+		        } else {
+		            return true;
+		        }
+		    });
+		});
+
+		function onbutton(id) {
+			$("#"+ id +"").css("text-decoration","underline");
+			$("#"+ id +"").css("cursor","pointer");
+		}
+		function offbutton(id) {
+			$("#"+ id +"").css("text-decoration","none");
+		}
+	</script>
+
+	<script type="text/javascript">
+		$(document).ajaxStop($.unblockUI); 
+	</script>
+
+</body>
+</html>

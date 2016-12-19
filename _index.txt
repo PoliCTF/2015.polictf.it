@@ -1,0 +1,8 @@
+http://0.0.0.0/index.html
+http://0.0.0.0/instructions.html
+http://0.0.0.0/reg_ko.html
+http://0.0.0.0/reg_ok.html
+http://0.0.0.0/registration.html
+http://0.0.0.0/rules.html
+http://0.0.0.0/challenges/index.html
+http://0.0.0.0/ranking/index.html

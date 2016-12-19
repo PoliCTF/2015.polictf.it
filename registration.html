@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="it">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PoliCTF 2015</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web:400,700' rel='stylesheet' type='text/css'>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+<link rel='stylesheet' href="css/bootstrapvalidator.min.css" />
+<link rel='stylesheet' href="css/formhelpers.min.css" />
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <span class="navbar-brand"><a href="http://polictf.it"><img src="images/logo.png" /><span>PoliCTF</span>2015</a></span>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="instructions">Instructions</a>
+                    </li>
+                    <li>
+                        <a href="javascript:openmodalnews()">News</a>
+                    </li>
+                    <!-- <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registration <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="registration">Register</a></li>
+                  <li><a href="http://s.maggi.cc/polictf2015-local" target="_blank">PoliMi students</a></li>
+                  </ul>
+                  </li>-->
+                    <li>
+                        <a href="mailto:info@polictf.it"><span class="glyphicon glyphicon-envelope"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        
+<div class="row marginbottom">
+    <div class="col-xs-12 col-sm-12 col-md-7">
+        <div class="main-text">
+          <center>
+          Competition will start in:
+           <h3>
+              <div><script>
+              TargetDate = "07/10/2015 9:00 AM GMT";
+              BackColor = "black";
+              ForeColor = "CornflowerBlue";
+              CountActive = true;
+              CountStepper = -1;
+              LeadingZero = true;
+              DisplayFormat = "%D Days, %H Hours<br/>%M Minutes, %S Seconds.";
+              FinishMessage = "It is finally here!";
+              </script>
+
+              <span id="countdown" class="timer"></span>
+
+              <script language="JavaScript" src="js/countdown.js"></script></div>
+            </h3>
+
+          </center>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-5 main_block">
+        <div class="main-text col-md-10">
+            <div id="reg-error"></div>
+            <form class="form" id="reg-form" data-toggle="validator">
+                <div class="form-group">
+                    <label for="username">Team name</label>
+                    <input type="text" class="form-control" pattern="^[a-zA-Z0-9 -_]{3,25}$" maxlength="25" id="username" placeholder="TeamName" data-error required>
+                    <span class="help-block">Min 3 and Up to 25 characters [a-zA-Z0-9 -_]</span>
+                </div>
+                <div class="form-group">
+                    <label for="password_first">Password</label>
+                    <input type="password" data-minlength="8" class="form-control" id="password_first" placeholder="Password" required>
+                    <span class="help-block">Minimum of 8 characters, containing letters and numbers</span>
+                </div>
+                <div class="form-group">
+                    <label for="password_check">Repeat Password</label>
+                    <input type="password" class="form-control" id="password_check" placeholder="Repeat Password" data-error="Whoops, these don't match" data-match="#password_first" data-match-error="Whoops, these don't match" required> 
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">
+                    <label for="email_address">Email address</label>
+                    <input type="email" class="form-control" id="email_address" placeholder="Enter email" data-error="Mail adress not correct" required>
+                    <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email_address_confirm">Confirm Email address</label>
+                    <input type="email" class="form-control" id="email_address_confirm" placeholder="Enter email" data-error="Whoops, these don't match" data-match="#email_address" required>
+                    <span class="help-block with-errors"></span>
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <div class="bfh-selectbox bfh-countries" data-flags="true" data-blank="false" data-country="US"></div>
+                </div>
+                <div class="form-group">
+                    <label for="web_url">Website/Twitter</label>
+                    <input class="form-control" id="web_url" placeholder="Website/Twitter">
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="check_rules" data-error="You must accept the rules ;)" required>I accept the <a href="rules.html" target="_blank">rules</a>
+                            <div class="help-block with-errors"></div>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <button type="submit" class="btn btn-default pull-right">Submit</button>
+                </div>
+                <div class="small">(please note that a confirmation mail will be sent, and you'll need to confirm your account)</div>
+            </form>
+            <div class="form-group">
+                <div id="messages"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div class="modal fade" id="news_tweets">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">Competition organized by the research groups of <a href="http://www.necst.it">NECSTLab</a> and supported by the CINI Cyber Security National Lab <span class="pull-right">~ design: <a href="https://github.com/JWuCines">JWuCines</a> &amp; <a href="https://twitter.com/_ocean">ocean</a> || 3d logo: <a href="https://it.linkedin.com/pub/ilaria-scarcia/25/686/510/en">Ila9</a></span></p>
+        </div>
+    </footer>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $('.nolink').popover().click(function () {
+            setTimeout(function () {
+                $('.nolink').popover('hide');
+            }, 5000);
+        });
+        news_tweets_loaded = false;
+        $("#news_tweets").on('shown.bs.modal', function() {
+            if(!news_tweets_loaded) {
+                $(this).find(".modal-content").load( "news.html" );
+                news_tweets_loaded = true;
+            }
+        })
+        function openmodalnews(){
+            $('#news_tweets').modal()
+        }
+    </script>
+
+    
+<script src="js/validator.js"> </script>
+<script src="js/formhelpers.min.js"> </script>
+<script>
+$('#reg-form').validator().on('submit', function (e) {
+    if (!e.isDefaultPrevented()) {
+		$("#reg-error").removeClass();
+		$("#reg-error").text("");
+        // everything looks good!
+        e.preventDefault();
+        // Use Ajax to submit form data
+        $.ajax({
+            method: "POST",
+            url: "https://registration.polictf.it/subscribe",
+            data: { name:  $("#username").val(), 
+                    email: $("#email_address").val(),
+                    password: $("#password_first").val(),
+                    rules: $("#check_rules").is(":checked") ? "y" : "n",
+                    country: $("span.bfh-selectbox-option").text(),
+                    website: $("#web_url").val() 
+            },
+            success: function(data_r) {
+				if(data_r.done) {
+					$("#reg-error").addClass("ok");
+					$("#reg-error").html( ">> Registration successful. <br /> An e-mail has been sent to you to confirm the registration.");
+					$("html, body").animate({ scrollTop: 0 }, "slow");
+					$("#reg-form").hide()
+				}
+				else {
+					var error_t = "";
+					$("#reg-error").addClass("error");
+					for (error_elm in data_r.errors) {
+						error_t = error_t + "<br /> - " + data_r.errors[error_elm].trim();
+					}
+					$("#reg-error").html(">> Some data isn't correct: <div style=\"font-size: 9pt;\">" + error_t + "</div>" );
+					$("html, body").animate({ scrollTop: 0 }, "slow");
+				}
+            },
+            error: function() { 
+               $("#reg-error").addClass("error");
+			   $("#reg-error").text( ">> Technical error. Please retry later.");
+			   $("html, body").animate({ scrollTop: 0 }, "slow");
+            }
+        });
+    }
+});
+</script>
+
+
+</body>
+
+</html>

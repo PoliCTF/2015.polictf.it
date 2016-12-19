@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="it">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PoliCTF 2015</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web:400,700' rel='stylesheet' type='text/css'>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script type="text/javascript" src="js/codef_core.js"></script>
+    <script type="text/javascript" src="js/codef_starfield.js"></script>
+    <script type="text/javascript" src="js/codef_scrolltext.js"></script>
+    <script type="text/javascript" src="js/codef_3d.js"></script>
+    <script type="text/javascript" src="js/scroller_text.js"></script>
+    <script type="text/javascript" src="js/glfx.js"></script>
+    <script type="text/javascript" src="js/pt.js"></script>
+    <script type="text/javascript" src="js/obj.js"></script>
+    <script type="text/javascript" src="js/demo.js"></script>
+
+    <script>
+    function fullscr(elemId) {
+        var elem = document.getElementById(elemId);
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        }
+    }
+
+    window.addEventListener('load', initDemo, false);
+    </script>
+    
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <span class="navbar-brand"><a href="http://polictf.it"><img src="images/logo.png" /><span>PoliCTF</span>2015</a></span>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="instructions">Instructions</a>
+                    </li>
+                    <li>
+                        <a href="javascript:openmodalnews()">News</a>
+                    </li>
+                    <!-- <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registration <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="registration">Register</a></li>
+                  <li><a href="http://s.maggi.cc/polictf2015-local" target="_blank">PoliMi students</a></li>
+                  </ul>
+                  </li>-->
+                    <li>
+                        <a href="mailto:info@polictf.it"><span class="glyphicon glyphicon-envelope"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        
+<div>
+<h1>Cannot confirm registration for your team.</h1>
+Perhaps you already confirmed your registration?
+If the error persists please contact us.</div>
+
+
+        <div class="modal fade" id="news_tweets">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">Competition organized by the research groups of <a href="http://www.necst.it">NECSTLab</a> and supported by the CINI Cyber Security National Lab <span class="pull-right">~ design: <a href="https://github.com/JWuCines">JWuCines</a> &amp; <a href="https://twitter.com/_ocean">ocean</a> || 3d logo: <a href="https://it.linkedin.com/pub/ilaria-scarcia/25/686/510/en">Ila9</a></span></p>
+        </div>
+    </footer>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $('.nolink').popover().click(function () {
+            setTimeout(function () {
+                $('.nolink').popover('hide');
+            }, 5000);
+        });
+        news_tweets_loaded = false;
+        $("#news_tweets").on('shown.bs.modal', function() {
+            if(!news_tweets_loaded) {
+                $(this).find(".modal-content").load( "news.html" );
+                news_tweets_loaded = true;
+            }
+        })
+        function openmodalnews(){
+            $('#news_tweets').modal()
+        }
+    </script>
+
+    
+
+</body>
+
+</html>

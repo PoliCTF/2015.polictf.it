@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<script> window.location.replace("/ranking/"); </script>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+	<link href="/css/ranking.css" media="screen" rel="stylesheet" type="text/css">
+	<link rel='stylesheet' href="/css/formhelpers.min.css" />
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/scoreboard.js"></script>
+	<script type="text/javascript" src="/js/blockui.js"></script>
+	<title>PoliCTF 2015 | Rankings</title>
+</head>
+<body onload="getScores(); refr();">
+	<div id="cloud1">
+		<img src="/images/cloud.png" alt="cloud">
+	</div>
+	<div id="cloud2">
+		<img src="/images/cloud.png" alt="cloud">
+	</div>
+	<div id="sun">
+		<img src="/images/sun.png" alt="sun">
+	</div>
+	<div class="container">
+		<div class="wrapper">
+			<div class="page-header">
+				<div class="col-md-12">
+					<h1>PoliCTF - <a href="scoreboard">Ranking</a></h1>
+				</div>
+			</div>
+			<ul class="header">
+				<li>#</li>
+				<li>Team</li>
+				<li>Country</li>
+				<li>Points</li>
+			</ul>
+			<div id="scores">
+			</div>
+		</div>
+	</div>
+	<div id="trees">
+	</div>
+	<div id="floor">
+		<img id="credits_id"src="/images/credits.png" onclick="$('#credits_text').show()" />
+		<div id="credits_text" style="display: none">
+			<h4 style="text-align: right; margin-top: 0px;"><span style="text-align: right; cursor:pointer;" onclick="$('#credits_text').hide()">X</span></h4>
+			Designed by<br /><strong>Alessandro De Vito</strong> and <strong>Laura Grossi</strong><br />
+			Developed by<br /><strong>Jiang Wu</strong> and <strong>Davide Quarta</strong><br />
+			Scoreboard managed by <strong>Stefano Sanfilippo</strong>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ajaxStop($.unblockUI); 
+		function refr() {
+			setTimeout("location.reload(true);",120000);
+		}
+	</script>
+</body>
+</html>

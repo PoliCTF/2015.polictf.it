@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+	<link href="../css/ranking.css" media="screen" rel="stylesheet" type="text/css">
+	<link rel='stylesheet' href="../css/formhelpers.min.css" />
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/scoreboard.js"></script>
+	<script type="text/javascript" src="../js/blockui.js"></script>
+	<title>PoliCTF 2015 | Challenges</title>
+</head>
+<body>
+
+	<div id="result" class="result_class">
+		<h2 id="X"><span style="text-align: right; cursor:pointer;" onclick="$('#result').hide()">X</span></h2>
+		<p id="result_data" class="center"></p>
+	</div>
+
+	<div id="chall" class="description">
+		<h2 id="X"><span style="text-align: right; cursor:pointer;" onclick="close_chall()">X</span></h2>
+		<p id="chall_name"></p>
+		<p id="chall_points" class="center"></p>
+		<p id="chall_html"></p>
+		<p><a id="chall_file"></a>
+	</div>
+
+	<div id="cloud1">
+		<img src="../images/cloud.png" alt="cloud">
+	</div>
+	<div id="cloud2">
+		<img src="../images/cloud.png" alt="cloud">
+	</div>
+	<div id="sun">
+		<img src="../images/sun.png" alt="sun">
+	</div>
+	<div class="container">
+		<div class="wrapper">
+			<div class="page-header">
+				<div class="col-md-12">
+					<h1>PoliCTF - <a href="scoreboard">Challenges</a></h1>
+				</div>
+			</div>
+			<ul class="header">
+				<li><strong>Type</strong></li>
+				<li><strong>Name</strong></li>
+				<li><strong>Point</strong></li>
+				<li><strong>Team solved</strong></li>
+			</ul>
+			<div id="solved_chall">
+			<ul id="chall1" onclick="openChall(1);" onmouseover="onbutton(&quot;chall1&quot;)"><li>Crypto</li><li>Exorcise</li><li>50</li><li>132/328</li></ul><ul id="chall2" onclick="openChall(2);" onmouseover="onbutton(&quot;chall2&quot;)"><li>Crypto</li><li>And the prophet said...</li><li>100</li><li>72/328</li></ul><ul id="chall3" onclick="openChall(3);" onmouseover="onbutton(&quot;chall3&quot;)"><li>Crypto</li><li>Even the server lies (on a couch unfortunatel</li><li>250</li><li>0/328</li></ul><ul id="chall4" onclick="openChall(4);" onmouseover="onbutton(&quot;chall4&quot;)"><li>Crypto</li><li>3DOGES2</li><li>400</li><li>29/328</li></ul><ul id="chall5" onclick="openChall(5);" onmouseover="onbutton(&quot;chall5&quot;)"><li>Pwnable</li><li>Hanoi As A Service</li><li>50</li><li>191/328</li></ul><ul id="chall6" onclick="openChall(6);" onmouseover="onbutton(&quot;chall6&quot;)"><li>Pwnable</li><li>John Pastry Shop</li><li>100</li><li>61/328</li></ul><ul id="chall7" onclick="openChall(7);" onmouseover="onbutton(&quot;chall7&quot;)"><li>Pwnable</li><li>John's Library</li><li>150</li><li>86/328</li></ul><ul id="chall8" onclick="openChall(8);" onmouseover="onbutton(&quot;chall8&quot;)"><li>Pwnable</li><li>John's Shuffle</li><li>350</li><li>55/328</li></ul><ul id="chall9" onclick="openChall(9);" onmouseover="onbutton(&quot;chall9&quot;)"><li>Pwnable</li><li>Verylong</li><li>500</li><li>13/328</li></ul><ul id="chall10" onclick="openChall(10);" onmouseover="onbutton(&quot;chall10&quot;)"><li>Forensics</li><li>John in the Middle</li><li>100</li><li>86/328</li></ul><ul id="chall11" onclick="openChall(11);" onmouseover="onbutton(&quot;chall11&quot;)"><li>Forensics</li><li>Italian spies lost a file</li><li>250</li><li>10/328</li></ul><ul id="chall12" onclick="openChall(12);" onmouseover="onbutton(&quot;chall12&quot;)"><li>Forensics</li><li>Fragmented Key</li><li>400</li><li>4/328</li></ul><ul id="chall13" onclick="openChall(13);" onmouseover="onbutton(&quot;chall13&quot;)"><li>Grab Bag</li><li>Hard Interview</li><li>50</li><li>208/328</li></ul><ul id="chall14" onclick="openChall(14);" onmouseover="onbutton(&quot;chall14&quot;)"><li>Grab Bag</li><li>John the Dropper</li><li>100</li><li>51/328</li></ul><ul id="chall15" onclick="openChall(15);" onmouseover="onbutton(&quot;chall15&quot;)"><li>Grab Bag</li><li>Trollface</li><li>300</li><li>3/328</li></ul><ul id="chall16" onclick="openChall(16);" onmouseover="onbutton(&quot;chall16&quot;)"><li>Grab Bag</li><li>Gandgalf</li><li>450</li><li>0/328</li></ul><ul id="chall17" onclick="openChall(17);" onmouseover="onbutton(&quot;chall17&quot;)"><li>Grab Bag</li><li>Lightning</li><li>500</li><li>4/328</li></ul><ul id="chall18" onclick="openChall(18);" onmouseover="onbutton(&quot;chall18&quot;)"><li>Reversing</li><li>Crack Me If You Can</li><li>100</li><li>196/328</li></ul><ul id="chall19" onclick="openChall(19);" onmouseover="onbutton(&quot;chall19&quot;)"><li>Reversing</li><li>Reversemeplz</li><li>200</li><li>108/328</li></ul><ul id="chall20" onclick="openChall(20);" onmouseover="onbutton(&quot;chall20&quot;)"><li>Reversing</li><li>Am I cheating?</li><li>200</li><li>17/328</li></ul><ul id="chall21" onclick="openChall(21);" onmouseover="onbutton(&quot;chall21&quot;)"><li>Reversing</li><li>John the Packer</li><li>350</li><li>50/328</li></ul><ul id="chall22" onclick="openChall(22);" onmouseover="onbutton(&quot;chall22&quot;)"><li>Reversing</li><li>Exceptionally-obfuscated</li><li>400</li><li>5/328</li></ul><ul id="chall23" onclick="openChall(23);" onmouseover="onbutton(&quot;chall23&quot;)"><li>Web</li><li>John The Traveller</li><li>100</li><li>112/328</li></ul><ul id="chall24" onclick="openChall(24);" onmouseover="onbutton(&quot;chall24&quot;)"><li>Web</li><li>John The Referee</li><li>150</li><li>91/328</li></ul><ul id="chall25" onclick="openChall(25);" onmouseover="onbutton(&quot;chall25&quot;)"><li>Web</li><li>Magic Chall</li><li>350</li><li>67/328</li></ul><ul id="chall26" onclick="openChall(26);" onmouseover="onbutton(&quot;chall26&quot;)"><li>Forensics</li><li>It's Hungry</li><li>100</li><li>18/328</li></ul></div>
+		</div>
+		</div>
+	</div>
+	<div id="trees">
+	</div>
+	<div id="floor">
+		<img id="credits_id"src="/images/credits.png" onclick="$('#credits_text').show()" />
+		<div id="credits_text" style="display: none">
+			<h4 style="text-align: right; margin-top: 0px;"><span style="text-align: right; cursor:pointer;" onclick="$('#credits_text').hide()">X</span></h4>
+			Designed by<br /><strong>Alessandro De Vito</strong> and <strong>Laura Grossi</strong><br />
+			Developed by<br /><strong>Jiang Wu</strong> and <strong>Davide Quarta</strong><br />
+			Scoreboard managed by <strong>Stefano Sanfilippo</strong>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ajaxStop($.unblockUI); 
+
+		function onbutton(id) {
+			$("#"+ id +"").css("cursor","pointer");
+		}
+	</script>
+</body>
+</html>
